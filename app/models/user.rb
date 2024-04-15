@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_one_attached :avatar
+  has_many :participations
+  has_many :challenges, through: :participations
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
