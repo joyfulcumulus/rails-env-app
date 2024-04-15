@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_041100) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_15_055038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actions", force: :cascade do |t|
+    t.float "recyclable_weight", null: false
+    t.bigint "user_id", null: false
+    t.bigint "challenge_event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_event_id"], name: "index_actions_on_challenge_event_id"
+    t.index ["user_id"], name: "index_actions_on_user_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,12 +72,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_041100) do
     t.string "participant_criteria", null: false
   end
 
+  create_table "claims", force: :cascade do |t|
+    t.integer "points", null: false
+    t.integer "cdc_voucher_value", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_claims_on_user_id"
+  end
+
   create_table "participations", force: :cascade do |t|
     t.integer "points", default: 0
     t.bigint "user_id", null: false
     t.bigint "challenge_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "notification_subscription"
     t.index ["challenge_id"], name: "index_participations_on_challenge_id"
     t.index ["user_id"], name: "index_participations_on_user_id"
   end
@@ -97,9 +117,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_041100) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "actions", "challenge_events"
+  add_foreign_key "actions", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "challenge_events", "challenges"
+  add_foreign_key "claims", "users"
   add_foreign_key "participations", "challenges"
   add_foreign_key "participations", "users"
   add_foreign_key "rewards_programmes", "challenges"
