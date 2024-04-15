@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_035340) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_15_041100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_035340) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "challenge_events", force: :cascade do |t|
+    t.datetime "start_datetime", null: false
+    t.datetime "end_datetime", null: false
+    t.integer "recurrence"
+    t.bigint "challenge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_challenge_events_on_challenge_id"
+  end
+
   create_table "challenges", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", null: false
@@ -54,8 +64,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_035340) do
 
   create_table "participations", force: :cascade do |t|
     t.integer "points", default: 0
-    t.bigint "user_id"
-    t.bigint "challenge_id"
+    t.bigint "user_id", null: false
+    t.bigint "challenge_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["challenge_id"], name: "index_participations_on_challenge_id"
@@ -63,10 +73,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_035340) do
   end
 
   create_table "rewards_programmes", force: :cascade do |t|
-    t.float "target"
-    t.string "unit_of_measurement"
-    t.integer "points"
-    t.bigint "challenge_id"
+    t.float "target", null: false
+    t.string "unit_of_measurement", null: false
+    t.integer "points", null: false
+    t.bigint "challenge_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["challenge_id"], name: "index_rewards_programmes_on_challenge_id"
@@ -89,6 +99,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_035340) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "challenge_events", "challenges"
   add_foreign_key "participations", "challenges"
   add_foreign_key "participations", "users"
   add_foreign_key "rewards_programmes", "challenges"
