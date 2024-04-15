@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :chatroom_members
   has_many :chatrooms, through: :chatroom_members
+  has_one :address
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
