@@ -1,4 +1,4 @@
 class Location < ApplicationRecord
   belongs_to :challenge
-  belongs_to :address
+  has_one :address
 end

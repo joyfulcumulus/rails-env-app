@@ -1,13 +1,13 @@
 class User < ApplicationRecord
   has_one_attached :avatar
-  has_many :participations
+  has_many :participations, dependent: :destroy
   has_many :challenges, through: :participations
-  has_many :claims
-  has_many :actions
-  has_many :messages
-  has_many :chatroom_members
+  has_many :claims, dependent: :destroy
+  has_many :actions, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :chatroom_members, dependent: :destroy
   has_many :chatrooms, through: :chatroom_members
-  has_one :address
+  has_one :address, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

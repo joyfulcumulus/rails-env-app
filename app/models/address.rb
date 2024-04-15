@@ -1,7 +1,7 @@
 class Address < ApplicationRecord
   belongs_to :user
   belongs_to :estate
-  has_many :locations
+  belongs_to :location
 
   validates :street, :zipcode, presence: true
 end
