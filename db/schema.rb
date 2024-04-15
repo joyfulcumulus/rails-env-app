@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_055857) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_15_062345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,6 +95,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_055857) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.bigint "challenge_id", null: false
+    t.bigint "address_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_locations_on_address_id"
+    t.index ["challenge_id"], name: "index_locations_on_challenge_id"
+  end
+
   create_table "participations", force: :cascade do |t|
     t.integer "points", default: 0
     t.bigint "user_id", null: false
@@ -137,6 +146,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_055857) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "challenge_events", "challenges"
   add_foreign_key "claims", "users"
+  add_foreign_key "locations", "addresses"
+  add_foreign_key "locations", "challenges"
   add_foreign_key "participations", "challenges"
   add_foreign_key "participations", "users"
   add_foreign_key "rewards_programmes", "challenges"
