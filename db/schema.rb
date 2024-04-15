@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_063355) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_15_064002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_063355) do
     t.datetime "start_date", null: false
     t.datetime "end_date", null: false
     t.string "participant_criteria", null: false
+  end
+
+  create_table "chatroom_members", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chatroom_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_chatroom_members_on_chatroom_id"
+    t.index ["user_id"], name: "index_chatroom_members_on_user_id"
   end
 
   create_table "chatrooms", force: :cascade do |t|
@@ -164,6 +173,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_063355) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "challenge_events", "challenges"
+  add_foreign_key "chatroom_members", "chatrooms"
+  add_foreign_key "chatroom_members", "users"
   add_foreign_key "chatrooms", "challenges"
   add_foreign_key "chatrooms", "estates"
   add_foreign_key "claims", "users"
