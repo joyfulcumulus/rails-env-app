@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_062345) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_15_063355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,6 +80,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_062345) do
     t.string "participant_criteria", null: false
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "challenge_id", null: false
+    t.bigint "estate_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_chatrooms_on_challenge_id"
+    t.index ["estate_id"], name: "index_chatrooms_on_estate_id"
+  end
+
   create_table "claims", force: :cascade do |t|
     t.integer "points", null: false
     t.integer "cdc_voucher_value", null: false
@@ -102,6 +111,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_062345) do
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_locations_on_address_id"
     t.index ["challenge_id"], name: "index_locations_on_challenge_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content", null: false
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "participations", force: :cascade do |t|
@@ -145,9 +164,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_062345) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "challenge_events", "challenges"
+  add_foreign_key "chatrooms", "challenges"
+  add_foreign_key "chatrooms", "estates"
   add_foreign_key "claims", "users"
   add_foreign_key "locations", "addresses"
   add_foreign_key "locations", "challenges"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "participations", "challenges"
   add_foreign_key "participations", "users"
   add_foreign_key "rewards_programmes", "challenges"
