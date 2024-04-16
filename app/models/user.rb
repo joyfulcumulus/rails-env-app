@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :chatroom_members, dependent: :destroy
   has_many :chatrooms, through: :chatroom_members
-  has_one :address
+  belongs_to :address
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -28,6 +28,7 @@ Estate.destroy_all
 puts "creating entries..."
 
 # create estates
+
 estate1 = Estate.create!(
   name: "Tampines",
   zipcode_prefix: "52"
@@ -46,8 +47,8 @@ recycling_challenge = Challenge.create!(
   name: "National Recycling Challenge",
   description: "The National Recycling Challenge is a nation-wide effort to become more sustainable. Increase the recycling rate of your estate in collaboration with your neighbours and collect points, which can be converted into CDC vouchers!\n Points are given based on the recycling rate attained by the estate.",
   participant_criteria: "Any household",
-  start_date: Time.new(2024, 6, 1, 0, 0, 0, "+08:00"),
-  end_date: Time.new(2024, 12, 31, 23, 59, 59, "+08:00")
+  start_date: Time.new(2024, 4, 1, 0, 0, 0),
+  end_date: Time.new(2024, 12, 31, 23, 59, 59)
 )
 
 puts "challenges created..."
@@ -182,41 +183,66 @@ puts "locations created..."
 
 # create challenge events
 
+recycling_event1 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 4, 6, 9, 0, 0),
+  end_datetime: Time.new(2024, 4, 6, 12, 0, 0),
+  challenge: recycling_challenge
+)
+
+recycling_event2 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 4, 13, 9, 0, 0),
+  end_datetime: Time.new(2024, 4, 13, 12, 0, 0),
+  challenge: recycling_challenge
+)
+
+recycling_event3 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 4, 20, 9, 0, 0),
+  end_datetime: Time.new(2024, 4, 20, 12, 0, 0),
+  challenge: recycling_challenge
+)
+
+recycling_event4 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 4, 27, 9, 0, 0),
+  end_datetime: Time.new(2024, 4, 27, 12, 0, 0),
+  challenge: recycling_challenge
+)
+
 puts "challenge events created..."
 
 # create chatrooms
 
+estate1_chatroom = Chatroom.create!(
+  challenge: recycling_challenge,
+  estate: estate1
+)
+
 puts "chatrooms created..."
 
-# create 15 users with addresses each in Tampines (5), Pasir Ris (5), Hougang (5)
+# create 8 resident users in Tampines and 2 admin users
 
-5.times do
-
-  user1 = User.create!(
-    email: "user1@email.com",
-    password: "password",
-    first_name: "Melissa",
-    last_name: "Li",
-    admin: false
-  )
-
-  file = URI.open("https://thispersondoesnotexist.com/")
-  user1.avatar.attach(io: file, filename: "avatar1.jpeg", content_type: "image/jpeg")
-  user1.save
-
-  Address.create!(
+(1..10).to_a.each do |num|
+  user_address = Address.create!(
     street: "Tampines Street #{rand(80..98)}",
     zipcode: %w[521895 529651 529393 528482 528588].sample,
     unit_number: "0#{rand(1..9)}-1124",
     estate: estate1
   )
+
+  user = User.create!(
+    email: "user#{num}@email.com",
+    password: "password",
+    first_name: %w[Melissa Daniel Desmond Abbie Melvin Susan].sample,
+    last_name: %w[Tan Lim Lee Goh Ng Heng].sample,
+    admin: num > 8, # last 2 user are admin
+    address: user_address
+  )
+  # Dont use cloudinary first, generate user without avatar
+  # file = URI.open("https://thispersondoesnotexist.com/")
+  # user.avatar.attach(io: file, filename: "avatar#{num}.jpeg", content_type: "image/jpeg")
+  # user.save
+
 end
 
 puts "users created..."
-
-# make 2 users admin
-
-puts "2 users become admin..."
-
 
 puts "seeding entries done!"
