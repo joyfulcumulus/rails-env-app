@@ -236,6 +236,18 @@ puts "chatrooms created..."
     admin: num > 8, # last 2 user are admin
     address: user_address
   )
+
+  action1 = Action.create!(
+    recyclable_weight: rand(78..150) / 100, # randomised 0.78-1.5kg
+    user:,
+    challenge_event: recycling_event1
+  )
+
+  action2 = Action.create!(
+    recyclable_weight: rand(78..150) / 100, # randomised 0.78-1.5kg
+    user:,
+    challenge_event: recycling_event2
+  )
   # Dont use cloudinary first, generate user without avatar
   # file = URI.open("https://thispersondoesnotexist.com/")
   # user.avatar.attach(io: file, filename: "avatar#{num}.jpeg", content_type: "image/jpeg")
@@ -243,6 +255,10 @@ puts "chatrooms created..."
 
 end
 
-puts "users created..."
+puts "users created... with past actions..."
+
+# create points history data for each user
+  # compute total recycle rate (total waste = 1kg / person, which is 10kg total)
+  # allocate points to all participating users
 
 puts "seeding entries done!"
