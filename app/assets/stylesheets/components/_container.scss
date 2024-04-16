@@ -1,0 +1,14 @@
+// This SCSS is for the application.html.erb page
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.layout-content {
+  overflow: auto;
+  scroll-behavior: smooth;
+  flex-grow: 1;
+}
