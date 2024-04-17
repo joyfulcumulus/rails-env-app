@@ -47,37 +47,50 @@
   </div>
 
   <div class="mb-3 p-3 bg-white">
-    <div class="d-flex justify-content-between">
-      <h1>Reports</h1>
-      <h2>View All &gt;</h2>
+    <div class="d-flex justify-content-between mb-2">
+      <h1 class="fs-2 fw-bold mb-0">Reports</h1>
+      <h2 class="fs-6 mb-0">View All &gt;</h2>
     </div>
-    <div>
-      <button class="home-card">
-        <div>
-          <%= image_tag "https://static1.straitstimes.com.sg/s3fs-public/styles/large30x20/public/articles/2023/01/10/LEO3974.JPG?VersionId=s6uzzaescX3mrbDtjP_1isQfYFhSD9rk" %>
-        </div>
-        <div class="home-text">
-          <p class="home-text-header">Dirty Pavement at Void Deck</p>
-          <div class="d-flex justify-content-between">
-            <i class="fa-solid fa-location-dot"></i>
-            <p>829 Tampines Street 81 520829</p>
-          </div>
-        </div>
-      </button>
+
+    <div class="overflow-x-auto">
+      <div class="d-flex">
+        <%= render "pages/shared/reportcard" %>
+        <%= render "pages/shared/reportcard" %>
+        <%= render "pages/shared/reportcard" %>
+        <%= render "pages/shared/reportcard" %>
+      </div>
     </div>
   </div>
 
-  <div class="mb-3 px-3 bg-white">
-    <div>
-      <h1>Happenings</h1>
-      <h2>View All &gt;</h2>
+  <div class="mb-3 p-3 bg-white">
+    <div class="d-flex justify-content-between mb-2">
+      <h1 class="fs-2 fw-bold mb-0">Happenings</h1>
+      <h2 class="fs-6 mb-0">View All &gt;</h2>
+    </div>
+
+    <div class="overflow-x-auto">
+      <div class="d-flex">
+        <%= render "pages/shared/happeningcard" %>
+        <%= render "pages/shared/happeningcard" %>
+        <%= render "pages/shared/happeningcard" %>
+        <%= render "pages/shared/happeningcard" %>
+      </div>
     </div>
   </div>
 
-  <div class="mb-3 px-3 bg-white">
-    <div>
-      <h1>Challenges</h1>
-      <h2>View All &gt;</h2>
+  <div class="mb-3 p-3 bg-white">
+    <div class="d-flex justify-content-between mb-2">
+      <h1 class="fs-2 fw-bold mb-0">Challenges</h1>
+      <h2 class="fs-6 mb-0">View All &gt;</h2>
+    </div>
+
+    <div class="overflow-x-auto">
+      <div class="d-flex">
+        <%= render "pages/shared/challengecard" %>
+        <%= render "pages/shared/challengecard" %>
+        <%= render "pages/shared/challengecard" %>
+      </div>
     </div>
   </div>
+
 </div>

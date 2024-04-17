@@ -1,16 +1,52 @@
 .home-card {
-  width: 140px;
+  min-width: 140px;
   box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, .2);
   background-color: white;
   padding: 0px;
   border: none;
+  position: relative;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 
-  img {
-    width: 140px;
+  .label {
+    background-color: $turquoise;
+    color: $white;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 4px 8px 4px 5px;
+    font-size: 0.7rem;
+    border-bottom-right-radius: 15px;
+
+    &.inactive {
+      display: none;
+    }
   }
 
-  .home-text{
+  img {
+    width: 100%;
+  }
 
+  .home-text-container{
+    padding: 5px 3px;
+
+    h3 {
+      text-align: start;
+      font-size: 0.9rem;
+    }
+
+    i {
+      font-size: 0.8rem;
+      color: $reject-grey;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: $secondary-text;
+      text-align: start;
+      padding-left: 3px;
+      margin-bottom: 0px;
+    }
   }
 
 }
