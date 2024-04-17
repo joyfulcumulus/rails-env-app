@@ -3,10 +3,10 @@
     <%= image_tag "https://www.cgs.gov.sg/images/default-source/rr-2023/bloobin-comic.tmb-medium.png" %>
   </div>
   <div class="home-text-container">
-    <h3>National Recycling Challenge</h3>
+    <h3><%= challenge.name %></h3>
     <div class="d-flex">
-      <i class="fa-regular fa-clock"></i>
-      <p>From StartDate</p>
+      <i class="fa-regular fa-clock pt-1"></i>
+      <p>From <%= challenge.start_date.strftime("%e %b %Y") %></p>
     </div>
   </div>
 </button>

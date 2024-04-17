@@ -47,7 +47,7 @@
   </div>
 
   <div class="mb-3 p-3 bg-white">
-    <div class="d-flex justify-content-between mb-2">
+    <div class="d-flex justify-content-between mb-2 align-items-center">
       <h1 class="fs-2 fw-bold mb-0">Reports</h1>
       <h2 class="fs-6 mb-0">View All &gt;</h2>
     </div>
@@ -63,7 +63,7 @@
   </div>
 
   <div class="mb-3 p-3 bg-white">
-    <div class="d-flex justify-content-between mb-2">
+    <div class="d-flex justify-content-between mb-2 align-items-center">
       <h1 class="fs-2 fw-bold mb-0">Happenings</h1>
       <h2 class="fs-6 mb-0">View All &gt;</h2>
     </div>
@@ -79,16 +79,16 @@
   </div>
 
   <div class="mb-3 p-3 bg-white">
-    <div class="d-flex justify-content-between mb-2">
+    <div class="d-flex justify-content-between mb-2 align-items-center">
       <h1 class="fs-2 fw-bold mb-0">Challenges</h1>
-      <h2 class="fs-6 mb-0">View All &gt;</h2>
+      <h2 class="fs-6 mb-0"><%= link_to "View All >", challenges_path, class: "text-decoration-none" %></h2>
     </div>
 
     <div class="overflow-x-auto">
       <div class="d-flex">
-        <%= render "pages/shared/challengecard" %>
-        <%= render "pages/shared/challengecard" %>
-        <%= render "pages/shared/challengecard" %>
+        <% @challenges.each do |challenge| %>
+          <%= render "pages/shared/challengecard", challenge: challenge %>
+        <% end %>
       </div>
     </div>
   </div>
