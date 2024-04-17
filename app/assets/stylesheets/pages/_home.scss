@@ -1,1 +1,33 @@
 // Specific CSS for your home-page
+
+.icon {
+  background-color: #7FD321;
+  color: $white;
+  font-size: 0.8rem;
+  padding: 3px 5px;
+  border-radius: 25vh;
+}
+
+.icon-text {
+  font-size: 0.7rem;
+}
+
+.menu-button {
+  border: none;
+  padding: 0px;
+  background-color: $white;
+
+  .menu-icon {
+    font-size: 1.5rem;
+    background: linear-gradient(#37A9B1, #308C93);
+    padding: 12px;
+    border-radius: 25vh;
+    color: white;
+  }
+
+  .menu-text {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #308C93;
+  }
+}

@@ -1,8 +1,83 @@
 <div>
-  <h1>One Service Home Page</h1>
-  <p>Lalala</p>
+  <div class="mb-3 px-3 bg-white">
+    <div class="d-flex justify-content-between py-2">
+      <div>
+        <i class="fa-solid fa-users icon"></i>
+        <span class="icon-text">Low</span>
+      </div>
+      <div>
+        <i class="fa-solid fa-cloud-sun-rain icon"></i>
+        <span class="icon-text">34</span>
+      </div>
+      <div>
+        <span class="icon">PSI</span>
+        <span class="icon-text">21</span>
+      </div>
+      <div>
+        <span class="icon">PM2.5</span>
+        <span class="icon-text">7</span>
+      </div>
+      <div>
+        <i class="fa-solid fa-leaf icon"></i>
+        <span class="icon-text">Green</span>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between py-2">
+      <button class="menu-button">
+        <i class="fa-regular fa-paper-plane menu-icon"></i>
+        <p class="menu-text">Submit Case</p>
+      </button>
+      <button class="menu-button">
+        <i class="fa-regular fa-handshake menu-icon"></i>
+        <p class="menu-text">Help Neighbour</p>
+      </button>
+      <button class="menu-button">
+        <i class="fa-regular fa-calendar-check menu-icon"></i>
+        <p class="menu-text">Book Facilities</p>
+      </button>
+      <button class="menu-button">
+        <i class="fa-regular fa-message menu-icon"></i>
+        <p class="menu-text">What Say You?</p>
+      </button>
+      <button class="menu-button">
+        <i class="fa-solid fa-square-parking menu-icon"></i>
+        <p class="menu-text">Start Parking</p>
+      </button>
+    </div>
+  </div>
 
-  <h2>Test Current User</h2>
-  <p>Email: <%= @user.email %><p>
-  <%# <%= cl_image_tag @user.avatar.key, height: 300, width: 400, crop: :fill %> %>
+  <div class="mb-3 p-3 bg-white">
+    <div class="d-flex justify-content-between">
+      <h1>Reports</h1>
+      <h2>View All &gt;</h2>
+    </div>
+    <div>
+      <button class="home-card">
+        <div>
+          <%= image_tag "https://static1.straitstimes.com.sg/s3fs-public/styles/large30x20/public/articles/2023/01/10/LEO3974.JPG?VersionId=s6uzzaescX3mrbDtjP_1isQfYFhSD9rk" %>
+        </div>
+        <div class="home-text">
+          <p class="home-text-header">Dirty Pavement at Void Deck</p>
+          <div class="d-flex justify-content-between">
+            <i class="fa-solid fa-location-dot"></i>
+            <p>829 Tampines Street 81 520829</p>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <div class="mb-3 px-3 bg-white">
+    <div>
+      <h1>Happenings</h1>
+      <h2>View All &gt;</h2>
+    </div>
+  </div>
+
+  <div class="mb-3 px-3 bg-white">
+    <div>
+      <h1>Challenges</h1>
+      <h2>View All &gt;</h2>
+    </div>
+  </div>
 </div>
