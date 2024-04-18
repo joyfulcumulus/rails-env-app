@@ -1,3 +1,19 @@
+.btn-pri-small-turquoise {
+  background-color: $turquoise;
+  color: $white;
+  border-radius: 50vh;
+  padding: 0.3rem 1rem;
+  border: none;
+}
+
+.btn-sec-small-turquoise {
+  background-color: $white;
+  color: $turquoise;
+  border: 1px solid $turquoise;
+  border-radius: 50vh;
+  padding: 0.3rem 1rem;
+}
+
 .btn-fullwidth-turquoise {
   background-color: $turquoise;
   color: $white;
@@ -10,6 +26,23 @@
   background-color: $white;
   color: $turquoise;
   border: 1px solid $turquoise;
+  border-radius: 50vh;
+  width: 100%;
+  padding: 0.6rem 1.2rem;
+}
+
+// For CDC related functions
+
+.btn-small-purple {
+  background-color: $dark-purple;
+  color: $white;
+  border-radius: 50vh;
+  padding: 0.3rem 1rem;
+}
+
+.btn-fullwidth-purple {
+  background-color: $dark-purple;
+  color: $white;
   border-radius: 50vh;
   width: 100%;
   padding: 0.6rem 1.2rem;

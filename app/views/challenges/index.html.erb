@@ -1,10 +1,40 @@
-<h1>Challenges Index</h1>
+<div class="p-3">
 
-<% @challenges.each do |challenge| %>
-  <p><%= challenge.name %></p>
-  <p><%= challenge.description %></p>
-  <p><%= challenge.participant_criteria %></p>
-  <p><%= challenge.start_date %></p>
-  <p><%= challenge.end_date %></p>
-  <p>Image if any</p>
-<% end %>
+  <div class="cdc-alert p-3 mb-4">
+    <h2>Claim CDC Vouchers with your points</h2>
+    <div class="d-flex justify-content-between align-items-center">
+      <p>You have XX points</p>
+      <button class="btn-small-purple">Claim</button>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between mb-4">
+    <button class="btn-pri-small-turquoise">All Challenges</button>
+    <button class="btn-sec-small-turquoise">My Challenges</button>
+  </div>
+
+  <div>
+    <% @challenges.each do |challenge| %>
+      <div class="d-flex align-items-start">
+        <div>
+          Cover image
+        </div>
+
+        <div>
+          <p><%= challenge.name %></p>
+          <p>Short description by <%= challenge.end_date.strftime("%e %b %Y") %></p>
+          <div class="d-flex align-items-center">
+            <p>Target METRIC <span>Insert metric</span></p>
+            <p>Current <span>Insert metric</span></p>
+          </div>
+          <div class="d-flex align-items-center">
+            <p>METRIC <span>points collected</span></p>
+            <p>METRIC <span>participating residents</span></p>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+
+</div>
