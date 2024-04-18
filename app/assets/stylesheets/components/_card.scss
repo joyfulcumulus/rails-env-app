@@ -61,4 +61,8 @@
   span, i {
     color: $text-purple;
   }
+
+  &.active {
+    background-color: $light-purple;
+  }
 }
