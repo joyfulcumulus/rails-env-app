@@ -4,7 +4,6 @@ class ChallengesController < ApplicationController
   def index
     @challenges = policy_scope(Challenge)
     @title = "Challenges"
-    @tagline = "Make a big impact with small effort"
     render layout: "subpage_layout"
   end
 
