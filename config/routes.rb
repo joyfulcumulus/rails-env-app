@@ -10,5 +10,24 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "pages#home"
 
-  resources :challenges
+  resources :challenges do
+    member do
+      get 'locations'
+      get 'points_history'
+      get 'recycled_history'
+      patch 'subscribe'
+      patch 'unsubscribe'
+      post 'join'
+    end
+  end
+
+  resources :chatrooms, only: %i[index show create] do
+    resources :messages, only: :create
+  end
+
+  resources :challenge_events, only: :show do
+    resources :actions, only: %i[new create]
+  end
+
+  resources :claims, only: %i[new create]
 end
