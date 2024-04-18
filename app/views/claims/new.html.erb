@@ -1,1 +1,20 @@
-<h1>Claims New page</h1>
+<div class="banner py-3 ps-5">
+  <p>$2: 10 points</p>
+  <p>$5: 25 points</p>
+  <p>$10: 50 points</p>
+  <%= image_tag "https://vouchers.cdc.gov.sg/images/hero_image_19Dec_v3.png"%>
+</div>
+
+<div class="content p-3">
+  <p class="pb-4 fs-4 border-bottom">Points: <span class="fw-semibold"><%= current_user.total_points %></span></p>
+  <div class="voucher-grid mb-3">
+    <% [2, 5, 10].each do |number| %>
+      <% 4.times do %>
+        <%= render "vouchercard", value: number %>
+      <% end %>
+    <% end %>
+  </div>
+  <p class="mb-0 fs-4">Total points used: <span class="fw-semibold">dynamic</span></p>
+  <p class="mb-3 fs-4">Balance: <span class="fw-semibold">dynamic</span></p>
+  <input class="btn-fullwidth-purple" type="submit" value="Claim">
+</div>

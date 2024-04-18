@@ -1,0 +1,27 @@
+.banner {
+  background-color: $medium-purple;
+  position: relative;
+
+  p {
+    color: $white;
+    margin-bottom: 0px;
+  }
+
+  img {
+    height: 200px;
+    position: absolute;
+    top: -18px;
+    right: 0px;
+  }
+}
+
+.content {
+  background-color: #F6F7FB;
+}
+
+.voucher-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1rem;
+  column-gap: 2rem;
+}
