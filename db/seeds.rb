@@ -310,6 +310,11 @@ puts "chatrooms created..."
     address: user_address
   )
 
+  user_total_points = TotalPoint.create!(
+    total_points: 150, # every user has 150 points from previous challenges
+    user:
+  )
+
   action1 = Action.create!(
     recyclable_weight: rand(78..150) / 100, # randomised 0.78-1.5kg
     user:,

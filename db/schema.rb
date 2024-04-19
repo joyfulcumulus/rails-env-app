@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_080946) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_19_064658) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -156,6 +156,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_080946) do
     t.index ["challenge_id"], name: "index_rewards_programmes_on_challenge_id"
   end
 
+  create_table "total_points", force: :cascade do |t|
+    t.integer "total_points", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_total_points_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -167,7 +175,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_080946) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.boolean "admin", default: false, null: false
-    t.integer "total_points"
     t.bigint "address_id"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -192,5 +199,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_080946) do
   add_foreign_key "participations", "challenges"
   add_foreign_key "participations", "users"
   add_foreign_key "rewards_programmes", "challenges"
+  add_foreign_key "total_points", "users"
   add_foreign_key "users", "addresses"
 end
