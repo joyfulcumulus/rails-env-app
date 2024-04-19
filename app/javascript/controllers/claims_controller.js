@@ -4,13 +4,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["userpoints", "total", "balance", "errorpopup", "successpopup", "card"]
 
-  static values = {
-    userPoints: String
-  }
-
   connect() {
     this.totalPointsUsed = 0;
-    this.balancePoints = parseInt(this.userPointsValue);
+    this.balancePoints = parseInt(this.userpointsTarget.innerText);
   }
 
   select(event) {
@@ -27,7 +23,7 @@ export default class extends Controller {
       }
 
       this.totalTarget.innerText = this.totalPointsUsed;
-      this.balanceTarget.innerText = parseInt(this.userPointsValue) - this.totalPointsUsed;
+      this.balanceTarget.innerText = this.balancePoints - this.totalPointsUsed;
     };
 
   }
@@ -51,10 +47,14 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then(data => {
-      // reset everything with the user's updated total_points
+      // reset variables with the user's updated total_points
+      this.totalPointsUsed = 0;
+      this.balancePoints = data.newUserPoints;
+      // reset display with the user's updated total_points
       this.userpointsTarget.innerText = data.newUserPoints;
       this.totalTarget.innerText = 0;
       this.balanceTarget.innerText = data.newUserPoints;
+      // remove active state for voucher cards
       this.cardTargets.forEach((card) => {
         card.classList.remove("active")
       })

@@ -5,7 +5,7 @@
   <%= image_tag "https://vouchers.cdc.gov.sg/images/hero_image_19Dec_v3.png"%>
 </div>
 
-<div data-controller="claims" data-claims-user-points-value = "<%= @total_points.total_points %>" class="content p-3">
+<div data-controller="claims" class="content p-3">
   <p class="pb-4 fs-4 border-bottom">Points: <span data-claims-target="userpoints" class="fw-semibold"><%= @total_points.total_points %></span></p>
   <div class="voucher-grid mb-3">
     <% [2, 5, 10].each do |number| %>
