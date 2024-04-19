@@ -7,5 +7,9 @@ class ClaimsController < ApplicationController
     render layout: "internalpage_layout"
   end
 
+  def create
+
+  end
+
 
 end

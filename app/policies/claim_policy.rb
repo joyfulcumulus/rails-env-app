@@ -1,11 +1,10 @@
 class ClaimPolicy < ApplicationPolicy
-
   def new?
-    true # default for now
+    true # anyone can open the claim page
   end
 
   def create?
-    true # default for now
+    true # anyone can create a claim
   end
 
   class Scope < Scope
