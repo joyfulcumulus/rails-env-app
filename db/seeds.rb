@@ -307,7 +307,6 @@ puts "chatrooms created..."
     first_name: %w[Melissa Daniel Desmond Abbie Melvin Susan].sample,
     last_name: %w[Tan Lim Lee Goh Ng Heng].sample,
     admin: num > 8, # last 2 user are admin
-    total_points: 150,
     address: user_address
   )
 
