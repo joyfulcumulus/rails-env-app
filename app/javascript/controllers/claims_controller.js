@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="claims"
 export default class extends Controller {
-  static targets = ["total", "balance", "popup"]
+  static targets = ["userpoints", "total", "balance", "errorpopup", "successpopup"]
 
   static values = {
     userPoints: String
@@ -17,7 +17,7 @@ export default class extends Controller {
     const points = parseInt(event.currentTarget.dataset.points);
 
     if (!(event.currentTarget.classList.contains("active")) && (this.totalPointsUsed + points > this.balancePoints)) {
-      this.popupTarget.classList.add("active");
+      this.errorpopupTarget.classList.add("active");
     } else {
       event.currentTarget.classList.toggle("active");
       if (event.currentTarget.classList.contains("active")) {
@@ -33,7 +33,7 @@ export default class extends Controller {
   }
 
   close() {
-    this.popupTarget.classList.remove("active");
+    this.errorpopupTarget.classList.remove("active");
   }
 
   create(event) {
@@ -51,6 +51,7 @@ export default class extends Controller {
     .then(response => response.json())
     .then(data => {
       console.log(data);
+      this.successpopupTarget.classList.add("active");
     })
   }
 

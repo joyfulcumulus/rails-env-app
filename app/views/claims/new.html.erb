@@ -5,8 +5,8 @@
   <%= image_tag "https://vouchers.cdc.gov.sg/images/hero_image_19Dec_v3.png"%>
 </div>
 
-<div data-controller="claims" data-claims-user-points-value = "<%= current_user.total_points %>" class="content p-3">
-  <p class="pb-4 fs-4 border-bottom">Points: <span class="fw-semibold"><%= current_user.total_points %></span></p>
+<div data-controller="claims" data-claims-user-points-value = "<%= @total_points.total_points %>" class="content p-3">
+  <p class="pb-4 fs-4 border-bottom">Points: <span data-claims-target="userpoints" class="fw-semibold"><%= @total_points.total_points %></span></p>
   <div class="voucher-grid mb-3">
     <% [2, 5, 10].each do |number| %>
       <% 4.times do %>
@@ -15,7 +15,7 @@
     <% end %>
   </div>
   <p class="mb-0 fs-4">Total points used: <span data-claims-target="total" class="fw-semibold">0</span></p>
-  <p class="mb-3 fs-4">Balance: <span data-claims-target="balance" class="fw-semibold"><%= current_user.total_points %></span></p>
+  <p class="mb-3 fs-4">Balance: <span data-claims-target="balance" class="fw-semibold"><%= @total_points.total_points %></span></p>
   <input data-action="click->claims#create" class="btn-fullwidth-purple" type="submit" value="Claim">
 
   <%= render 'popup' %> <!-- Render popup hidden behind the content above-->
