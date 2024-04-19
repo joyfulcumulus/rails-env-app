@@ -10,7 +10,7 @@ export default class extends Controller {
 
   connect() {
     this.totalPointsUsed = 0;
-    this.balancePoints = parseInt(this.balanceTarget.innerText);
+    this.balancePoints = parseInt(this.userPointsValue);
   }
 
   select(event) {
