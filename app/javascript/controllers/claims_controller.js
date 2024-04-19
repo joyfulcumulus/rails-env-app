@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="claims"
 export default class extends Controller {
-  static targets = ["userpoints", "total", "balance", "errorpopup", "successpopup"]
+  static targets = ["userpoints", "total", "balance", "errorpopup", "successpopup", "card"]
 
   static values = {
     userPoints: String
@@ -34,6 +34,7 @@ export default class extends Controller {
 
   close() {
     this.errorpopupTarget.classList.remove("active");
+    this.successpopupTarget.classList.remove("active");
   }
 
   create(event) {
@@ -50,7 +51,15 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      // reset everything with the user's updated total_points
+      this.userpointsTarget.innerText = data.newUserPoints;
+      this.totalTarget.innerText = 0;
+      this.balanceTarget.innerText = data.newUserPoints;
+      this.cardTargets.forEach((card) => {
+        card.classList.remove("active")
+      })
+
+      // overlay with success pop up
       this.successpopupTarget.classList.add("active");
     })
   }

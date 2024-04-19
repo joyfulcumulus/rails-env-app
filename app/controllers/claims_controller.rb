@@ -22,7 +22,6 @@ class ClaimsController < ApplicationController
     # respond back both actions okay
     respond_to do |format|
       format.json { render json: { newUserPoints: new_balance }, status: :ok }
-      # format.html { redirect_to new_claim_path }
     end
   end
 end

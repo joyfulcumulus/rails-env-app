@@ -8,6 +8,6 @@
 <div data-claims-target="successpopup" class="d-flex justify-content-center align-items-center popup-container">
   <div class="popup-content">
     <p>CDC Vouchers claimed!</p>
-    <%= link_to "Close", new_claim_path, class: "btn-small-purple" %>
+    <button data-action="click->claims#close" class="btn-small-purple">Close</button>
   </div>
 </div>
