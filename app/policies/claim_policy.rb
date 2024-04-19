@@ -4,7 +4,7 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def create?
-    true # anyone can create a claim
+    record.user == user # the claim record created must be the current user in this session
   end
 
   class Scope < Scope

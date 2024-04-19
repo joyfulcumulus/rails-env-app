@@ -35,4 +35,28 @@ export default class extends Controller {
   close() {
     this.popupTarget.classList.remove("active");
   }
+
+  create(event) {
+    event.preventDefault();
+    const url = `/claims`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json",
+        "X-CSRF-Token": this.#getMetaValue("csrf-token")
+      },
+      body: JSON.stringify({totalPointsUsed: this.totalPointsUsed})
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+  }
+
+  #getMetaValue(name) {
+    const element = document.head.querySelector(`meta[name="${name}"]`)
+    return element.getAttribute("content")
+  }
+
 }

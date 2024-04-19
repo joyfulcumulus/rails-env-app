@@ -16,7 +16,7 @@
   </div>
   <p class="mb-0 fs-4">Total points used: <span data-claims-target="total" class="fw-semibold">0</span></p>
   <p class="mb-3 fs-4">Balance: <span data-claims-target="balance" class="fw-semibold"><%= current_user.total_points %></span></p>
-  <input class="btn-fullwidth-purple" type="submit" value="Claim">
+  <input data-action="click->claims#create" class="btn-fullwidth-purple" type="submit" value="Claim">
 
   <%= render 'popup' %> <!-- Render popup hidden behind the content above-->
 </div>
