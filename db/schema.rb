@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_19_064658) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_20_045235) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_064658) do
     t.datetime "start_date", null: false
     t.datetime "end_date", null: false
     t.string "participant_criteria", null: false
+    t.string "metric_name", null: false
   end
 
   create_table "chatroom_members", force: :cascade do |t|

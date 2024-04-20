@@ -25,11 +25,11 @@
   <p><%= @challenge.participant_criteria %></p>
 
   <h2 class="fs-5">Rewards structure</h2>
-  <p>Points are given based on the METRIC attained by the estate:</p>
+  <p>Points are given based on the <%= @challenge.metric_name %> attained by the estate:</p>
   <table class="table" >
     <thead class="table-light">
       <tr>
-        <th>METRIC</th>
+        <th><%= @challenge.metric_name %></th>
         <th>Points Given</th>
       </tr>
     </thead>
