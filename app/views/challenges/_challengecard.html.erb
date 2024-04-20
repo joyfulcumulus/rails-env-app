@@ -1,0 +1,22 @@
+<div class="d-flex align-items-start">
+  <div>
+    <% if challenge.cover.attached? %>
+      <%= cl_image_tag challenge.cover.key, class: "", alt: "challenge cover image"%>
+    <% else %>
+      <%= image_tag "challenge.PNG", class: "", alt: "default challenge cover image"%>
+    <% end %>
+  </div>
+
+  <div>
+    <p><%= challenge.name %></p>
+    <p>Short description by <%= challenge.end_date.strftime("%e %b %Y") %></p>
+    <div class="d-flex align-items-center">
+      <p>Target METRIC <span>Insert metric</span></p>
+      <p>Current <span>Insert metric</span></p>
+    </div>
+    <div class="d-flex align-items-center">
+      <p>METRIC <span>points collected</span></p>
+      <p>METRIC <span>participating residents</span></p>
+    </div>
+  </div>
+</div>
