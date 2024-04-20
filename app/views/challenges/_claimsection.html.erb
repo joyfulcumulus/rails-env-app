@@ -1,0 +1,7 @@
+<div class="cdc-alert p-3 mb-4">
+  <h2>Claim CDC Vouchers with your points</h2>
+  <div class="d-flex justify-content-between align-items-center">
+    <p>You have <%= @total_points.total_points %> points</p>
+    <%= link_to "Claim", new_claim_path, class: "btn-small-purple" %>
+  </div>
+</div>

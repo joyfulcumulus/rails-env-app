@@ -3,6 +3,7 @@ class ChallengesController < ApplicationController
 
   def index
     @challenges = policy_scope(Challenge)
+    @total_points = TotalPoint.find_by(user: current_user)
     @title = "Challenges"
     render layout: "subpage_layout"
   end

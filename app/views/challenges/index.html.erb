@@ -1,12 +1,8 @@
 <div class="p-3">
 
-  <div class="cdc-alert p-3 mb-4">
-    <h2>Claim CDC Vouchers with your points</h2>
-    <div class="d-flex justify-content-between align-items-center">
-      <p>You have XX points</p>
-      <%= link_to "Claim", new_claim_path, class: "btn-small-purple" %>
-    </div>
-  </div>
+  <% if @total_points.total_points > 0 %>
+    <%= render "claimsection" %>
+  <% end %>
 
   <div class="d-flex justify-content-between mb-4">
     <button class="btn-pri-small-turquoise">All Challenges</button>
