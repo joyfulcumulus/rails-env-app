@@ -1,4 +1,47 @@
-<h1>Challenge Show Page</h1>
+<div>
+  <% if @challenge.cover.attached? %>
+    <%= cl_image_tag @challenge.cover.key, class: "", alt: "challenge cover image"%>
+  <% else %>
+    <%= image_tag "challenge.PNG", class: "", alt: "default challenge cover image"%>
+  <% end %>
+</div>
 
-<p><%= @challenge.name %></p>
-<p><%= @challenge.description %></p>
+<div class="p-3">
+  <h1 class="fs-2 mb-3"><%= @challenge.name %></h1>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <button class="btn-pri-small-turquoise">About</button>
+    <button class="btn-sec-small-turquoise">Your Estate</button>
+    <button class="btn-sec-small-turquoise">Your Home</button>
+  </div>
+
+  <h2 class="fs-5">What</h2>
+  <p><%= @challenge.description %></p>
+
+  <h2 class="fs-5">When</h2>
+  <p>From <%= @challenge.start_date.strftime("%e %b %Y") %> to <%= @challenge.end_date.strftime("%e %b %Y") %></p>
+
+  <h2 class="fs-5">Who can participate</h2>
+  <p><%= @challenge.participant_criteria %></p>
+
+  <h2 class="fs-5">Rewards structure</h2>
+  <p>Points are given based on the METRIC attained by the estate:</p>
+  <table class="table" >
+    <thead class="table-light">
+      <tr>
+        <th>METRIC</th>
+        <th>Points Given</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @rewards_programmes.each do |reward| %>
+      <tr>
+        <td><%= reward.target %><%= reward.unit_of_measurement %></td>
+        <td><%= reward.points %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <p class="mt-3">For Terms & Conditions (T&Cs) and Frequently Asked Questions (FAQs), please click <%= link_to "here", "#", class: "text-decoration-none" %>.</p>
+</div>

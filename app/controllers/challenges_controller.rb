@@ -11,6 +11,9 @@ class ChallengesController < ApplicationController
   def show
     @challenge = Challenge.find(params[:id])
     authorize @challenge
+    @rewards_programmes = RewardsProgramme.where(challenge: @challenge)
+    @title = "Challenge Details"
+    render layout: "internalpage_layout"
   end
 
   def new
