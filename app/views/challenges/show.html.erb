@@ -6,7 +6,7 @@
   <% end %>
 </div>
 
-<div class="p-3">
+<div class="px-3 pt-3">
   <h1 class="fs-2 mb-3"><%= @challenge.name %></h1>
 
   <div class="d-flex justify-content-between align-items-center mb-3">
@@ -14,18 +14,20 @@
     <button class="btn-sec-small-turquoise">Your Estate</button>
     <button class="btn-sec-small-turquoise">Your Home</button>
   </div>
+</div>
 
+<div class="p-3">
   <h2 class="fs-5">What</h2>
-  <p><%= @challenge.description %></p>
+  <p class="mb-4"><%= @challenge.description %></p>
 
   <h2 class="fs-5">When</h2>
-  <p>From <%= @challenge.start_date.strftime("%e %b %Y") %> to <%= @challenge.end_date.strftime("%e %b %Y") %></p>
+  <p class="mb-4">From <%= @challenge.start_date.strftime("%e %b %Y") %> to <%= @challenge.end_date.strftime("%e %b %Y") %></p>
 
   <h2 class="fs-5">Who can participate</h2>
-  <p><%= @challenge.participant_criteria %></p>
+  <p class="mb-4"><%= @challenge.participant_criteria %></p>
 
   <h2 class="fs-5">Rewards structure</h2>
-  <p>Points are given based on the <%= @challenge.metric_name %> attained by the estate:</p>
+  <p class="mb-1">Points are given based on the <%= @challenge.metric_name %> attained by the estate:</p>
   <table class="table" >
     <thead class="table-light">
       <tr>
@@ -43,5 +45,48 @@
     </tbody>
   </table>
 
-  <p class="mt-3">For Terms & Conditions (T&Cs) and Frequently Asked Questions (FAQs), please click <%= link_to "here", "#", class: "text-decoration-none" %>.</p>
+  <p class="mt-4">For Terms & Conditions (T&Cs) and Frequently Asked Questions (FAQs), please click <%= link_to "here", "#", class: "text-decoration-none" %>.</p>
+</div>
+
+<div class="p-3">
+  <h2 class="fs-5"><%= @challenge.metric_name %> Performance</h2>
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <div class="progress flex-grow-1 me-4" role="progressbar" aria-label="Example with label" aria-valuenow="22.5" aria-valuemin="22" aria-valuemax="23">
+      <div class="progress-bar bar-yellow text-dark" style="width: 25%">22.5%</div>
+    </div>
+    <div>
+      <p class="mb-0 metric-green fw-semibold fs-4">XX%</p>
+      <p class="mb-0">Next Target</p>
+    </div>
+  </div>
+  <div class="d-flex align-items-center mb-4">
+    <p class="mb-0"><span class="fw-semibold fs-4">XX</span> months till end of challenge</p>
+    <p class="mb-0"><span class="fw-semibold fs-4">XX</span> residents participating</p>
+  </div>
+
+  <h2 class="fs-5">Recycling Points</h2>
+  <div class="mb-4">
+    Insert mapbox map
+  </div>
+
+  <h2 class="fs-5">Collection Timing</h2>
+  <p class="mb-1">Every Saturday, 10am - 12pm islandwide</p>
+  <div class="form-check form-switch noti-yellow py-2 mb-4">
+    <label class="form-check-label" for="flexSwitchCheckDefault">Notify me 2 days before collection</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+  </div>
+
+  <h2 class="fs-5">Main Contact Person</h2>
+  <div class="d-flex justify-content-between align-items-center">
+    <div>
+      <%= image_tag "avatar.png", class: "avatar", alt: "default avatar" %>
+      <span>Organiser name</span>
+    </div>
+    <%= link_to "Chat", "#", class: "btn-pri-small-turquoise" %>
+  </div>
+
+</div>
+
+<div class="p-3">
+  <p>No information here. <br><br>Join the challenge to start tracking your home's progress in recycling!</p>
 </div>
