@@ -6,4 +6,9 @@ class ChatroomsController < ApplicationController
     render layout: "internalpage_layout"
   end
 
+  def show
+    @chatroom = Chatroom.find(params[:id])
+    authorize @chatroom
+  end
+
 end

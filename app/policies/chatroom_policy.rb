@@ -1,5 +1,7 @@
 class ChatroomPolicy < ApplicationPolicy
-
+  def show?
+    true # temporarily allow all users to see all chatrooms
+  end
 
   class Scope < Scope
     def resolve

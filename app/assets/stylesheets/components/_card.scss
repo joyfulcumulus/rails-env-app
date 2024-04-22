@@ -92,3 +92,18 @@
   }
 
 }
+
+.chatroom-card {
+  background-color: white;
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+  }
+
+  p {
+    color: $secondary-text;
+    font-size: 0.8rem;
+  }
+}
