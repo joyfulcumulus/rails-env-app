@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="share"
+// Connects to data-controller="challenges-footer"
 export default class extends Controller {
   static targets = ["joinpopup", "sharepopup"]
 

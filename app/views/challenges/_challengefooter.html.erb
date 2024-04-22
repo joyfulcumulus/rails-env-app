@@ -1,5 +1,5 @@
-<div data-controller="share" class="cta-footer container-fluid p-0 <%= Participation.where(user: current_user, challenge: @challenge).exists? ? "d-none" : "" %>">
-  <div data-action="click->share#copyLink" class="d-flex align-items-center justify-content-center">
+<div data-controller="challenges-footer" class="cta-footer container-fluid p-0 <%= Participation.where(user: current_user, challenge: @challenge).exists? ? "d-none" : "" %>">
+  <div data-action="click->challenges-footer#copyLink" class="d-flex align-items-center justify-content-center">
     <%= link_to "#", class: "footer-link-with-icon" do %>
       <i class="fa-solid fa-share-nodes footer-icon"></i>
       <span>Share</span>
@@ -13,8 +13,8 @@
   <%= render "popup" %>
 </div>
 
-<div data-controller="share" class="footer container-fluid d-flex justify-content-around p-0 <%= Participation.where(user: current_user, challenge: @challenge).exists? ? "" : "d-none" %>">
-  <div data-action="click->share#copyLink">
+<div data-controller="challenges-footer" class="footer container-fluid d-flex justify-content-around p-0 <%= Participation.where(user: current_user, challenge: @challenge).exists? ? "" : "d-none" %>">
+  <div data-action="click->challenges-footer#copyLink">
     <%= link_to "#", class: "footer-link" do %>
       <i class="fa-solid fa-share-nodes footer-icon"></i>
       <p>Share</p>
