@@ -1,4 +1,4 @@
-<div class="cta-footer container-fluid p-0">
+<div class="cta-footer container-fluid p-0 d-none">
   <div class="d-flex align-items-center justify-content-center">
     <%= link_to "#", class: "footer-link-with-icon" do %>
       <i class="fa-solid fa-share-nodes footer-icon"></i>
@@ -8,5 +8,28 @@
 
   <div class="footer-link-no-icon d-flex align-items-center justify-content-center">
     <%= link_to "Join Challenge", "#", class: "" %>
+  </div>
+</div>
+
+<div class="footer container-fluid d-flex justify-content-around p-0">
+  <div>
+    <%= link_to "#", class: "footer-link" do %>
+      <i class="fa-solid fa-share-nodes footer-icon"></i>
+      <p>Share</p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= link_to "#", class: "footer-link" do %>
+      <i class="fa-solid fa-qrcode footer-icon"></i>
+      <p>Scan QR</p>
+    <% end %>
+  </div>
+
+    <div>
+    <%= link_to chatrooms_path, class: "footer-link" do %>
+      <i class="fa-regular fa-comments footer-icon"></i>
+      <p>Chat</p>
+    <% end %>
   </div>
 </div>
