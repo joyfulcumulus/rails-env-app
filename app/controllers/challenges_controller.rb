@@ -51,6 +51,18 @@ class ChallengesController < ApplicationController
     @challenge.destroy
   end
 
+  def join
+    @user = current_user
+    @challenge = Challenge.find(params[:id])
+    @participation = Participation.new(user: @user, challenge: @challenge)
+    authorize @participation
+    @participation.save!
+
+    respond_to do |format|
+      format.json { render json: { message: "ok" }, status: :ok }
+    end
+  end
+
   private
 
   def params_challenge

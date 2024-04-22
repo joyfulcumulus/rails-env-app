@@ -1,38 +1,40 @@
-<div data-controller="challenges-footer" class="cta-footer container-fluid p-0 <%= Participation.where(user: current_user, challenge: @challenge).exists? ? "d-none" : "" %>">
-  <div data-action="click->challenges-footer#copyLink" class="d-flex align-items-center justify-content-center">
-    <%= link_to "#", class: "footer-link-with-icon" do %>
-      <i class="fa-solid fa-share-nodes footer-icon"></i>
-      <span>Share</span>
-    <% end %>
+<div data-controller="challenges-footer">
+  <div data-challenges-footer-target="nonParticipantFooter"
+    class="cta-footer container-fluid p-0 <%= Participation.where(user: current_user, challenge: @challenge).exists? ? "d-none" : "" %>">
+    <div data-action="click->challenges-footer#copyLink" class="d-flex align-items-center justify-content-center">
+      <%= link_to "#", class: "footer-link-with-icon" do %>
+        <i class="fa-solid fa-share-nodes footer-icon"></i>
+        <span>Share</span>
+      <% end %>
+    </div>
+
+    <div data-action="click->challenges-footer#joinChallenge" data-challenge-id="<%= @challenge.id %>" class="footer-link-no-icon d-flex align-items-center justify-content-center">
+      <%= link_to "Join Challenge", "#" %>
+    </div>
   </div>
 
-  <div class="footer-link-no-icon d-flex align-items-center justify-content-center">
-    <%= link_to "Join Challenge", "#", class: "" %>
-  </div>
-
-  <%= render "popup" %>
-</div>
-
-<div data-controller="challenges-footer" class="footer container-fluid d-flex justify-content-around p-0 <%= Participation.where(user: current_user, challenge: @challenge).exists? ? "" : "d-none" %>">
-  <div data-action="click->challenges-footer#copyLink">
-    <%= link_to "#", class: "footer-link" do %>
-      <i class="fa-solid fa-share-nodes footer-icon"></i>
-      <p>Share</p>
-    <% end %>
-  </div>
-
-  <div>
-    <%= link_to "#", class: "footer-link" do %>
-      <i class="fa-solid fa-qrcode footer-icon"></i>
-      <p>Scan QR</p>
-    <% end %>
-  </div>
+  <div data-challenges-footer-target="participantFooter"
+    class="footer container-fluid d-flex justify-content-around p-0 <%= Participation.where(user: current_user, challenge: @challenge).exists? ? "" : "d-none" %>">
+    <div data-action="click->challenges-footer#copyLink">
+      <%= link_to "#", class: "footer-link" do %>
+        <i class="fa-solid fa-share-nodes footer-icon"></i>
+        <p>Share</p>
+      <% end %>
+    </div>
 
     <div>
-    <%= link_to chatrooms_path, class: "footer-link" do %>
-      <i class="fa-regular fa-comments footer-icon"></i>
-      <p>Chat</p>
-    <% end %>
+      <%= link_to "#", class: "footer-link" do %>
+        <i class="fa-solid fa-qrcode footer-icon"></i>
+        <p>Scan QR</p>
+      <% end %>
+    </div>
+
+      <div>
+      <%= link_to chatrooms_path, class: "footer-link" do %>
+        <i class="fa-regular fa-comments footer-icon"></i>
+        <p>Chat</p>
+      <% end %>
+    </div>
   </div>
 
   <%= render "popup" %>
