@@ -1,4 +1,4 @@
-<div class="cta-footer container-fluid p-0 d-none">
+<div class="cta-footer container-fluid p-0 <%= Participation.where(user: current_user, challenge: @challenge).exists? ? "d-none" : "" %>">
   <div class="d-flex align-items-center justify-content-center">
     <%= link_to "#", class: "footer-link-with-icon" do %>
       <i class="fa-solid fa-share-nodes footer-icon"></i>
@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<div class="footer container-fluid d-flex justify-content-around p-0">
+<div class="footer container-fluid d-flex justify-content-around p-0 <%= Participation.where(user: current_user, challenge: @challenge).exists? ? "" : "d-none" %>">
   <div>
     <%= link_to "#", class: "footer-link" do %>
       <i class="fa-solid fa-share-nodes footer-icon"></i>
