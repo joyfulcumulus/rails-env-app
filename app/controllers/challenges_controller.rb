@@ -13,7 +13,7 @@ class ChallengesController < ApplicationController
     authorize @challenge
     @rewards_programmes = RewardsProgramme.where(challenge: @challenge)
     @title = "Challenge Details"
-    render layout: "internalpage_layout"
+    render layout: "challenge_layout"
   end
 
   def new
