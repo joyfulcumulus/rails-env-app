@@ -1,10 +1,14 @@
 <%= link_to challenge_path(challenge) do %>
   <button class="home-card">
     <div>
-      <%= image_tag "https://www.cgs.gov.sg/images/default-source/rr-2023/bloobin-comic.tmb-medium.png" %>
+      <% if challenge.cover.attached? %>
+        <%= cl_image_tag challenge.cover.key, class: "", alt: "challenge cover image"%>
+      <% else %>
+        <%= image_tag "challenge.PNG", class: "", alt: "default challenge cover image"%>
+      <% end %>
     </div>
     <div class="home-text-container">
-      <h3><%= challenge.name %></h3>
+      <h3><%= challenge.name.truncate(32) %></h3>
       <div class="d-flex">
         <i class="fa-regular fa-clock pt-1"></i>
         <p>From <%= challenge.start_date.strftime("%e %b %Y") %></p>
