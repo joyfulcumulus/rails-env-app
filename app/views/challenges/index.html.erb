@@ -4,15 +4,23 @@
     <%= render "claimsection" %>
   <% end %>
 
-  <div class="d-flex justify-content-between mb-4">
-    <button class="btn-small-turquoise active">All Challenges</button>
-    <button class="btn-small-turquoise">My Challenges</button>
-  </div>
+  <div data-controller="challenges-filter">
+    <div class="d-flex justify-content-between mb-4">
+      <button data-action="click->challenges-filter#selectAll" data-challenges-filter-target="filter" class="btn-small-turquoise active">All Challenges</button>
+      <button data-action="click->challenges-filter#selectMine" data-challenges-filter-target="filter" class="btn-small-turquoise">My Challenges</button>
+    </div>
 
-  <div>
-    <% @challenges.each do |challenge| %>
-      <%= render "challengecard", challenge: challenge %>
-    <% end %>
+    <div data-challenges-filter-target="all">
+      <% @challenges.each do |challenge| %>
+        <%= render "challengecard", challenge: challenge %>
+      <% end %>
+    </div>
+
+    <div data-challenges-filter-target="mine" class="d-none">
+      <% @challenges_participated.each do |challenge| %>
+        <%= render "challengecard", challenge: challenge %>
+      <% end %>
+    </div>
   </div>
 
 </div>
