@@ -16,7 +16,7 @@ export default class extends Controller {
       }
     })
     .then(response => response.json())
-    .then(data => {
+    .then(() => {
       this.nonParticipantFooterTarget.classList.add("d-none");
       this.participantFooterTarget.classList.remove("d-none");
       this.joinpopupTarget.classList.add("active");
