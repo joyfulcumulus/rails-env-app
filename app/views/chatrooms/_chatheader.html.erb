@@ -1,0 +1,22 @@
+<div class="navbar navbar-expand-sm navbar-light header border-bottom border-secondary-subtle">
+  <div class="container-fluid justify-content-start">
+    <%= link_to :back do %>
+      <i class="fa-solid fa-arrow-left subheader-icon py-1"></i>
+    <% end %>
+
+    <div class="d-flex">
+      <div class="px-2">
+        <% if @chatroom.challenge.cover.attached? %>
+          <%= cl_image_tag @chatroom.challenge.cover.key, class: "avatar", alt: "challenge cover image" %>
+        <% else %>
+          <%= image_tag "challenge.PNG", class: "avatar", alt: "default challenge cover image" %>
+        <% end %>
+      </div>
+      <div class="flex-grow-1">
+        <h1 class="m-0 fs-6"><%= @chatroom.challenge.name %></h1>
+        <p class="m-0 fs-6"><%= @chatroom.estate.name %>: XXX members</p>
+      </div>
+    </div>
+
+  </div>
+</div>
