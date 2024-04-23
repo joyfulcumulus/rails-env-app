@@ -1,0 +1,31 @@
+.message {
+  display: flex;
+  align-items: end;
+  width: 100%;
+  margin-bottom: 0.75rem;
+  margin-top: 0.75rem;
+
+  strong {
+    color: $dark-turquoise;
+  }
+}
+
+.content {
+  width: 70%;
+  border-radius: 8px 8px 0 8px;
+  margin-right: 0.5rem;
+  box-shadow: 4px 4px 4px 1px rgba(0, 0, 0, .15);
+}
+
+.message-receiver {
+  .content{
+    background-color: $white;
+  }
+}
+
+.message-sender {
+  flex-direction: row-reverse;
+  .content {
+    background-color: #CCEBEB;
+  }
+}

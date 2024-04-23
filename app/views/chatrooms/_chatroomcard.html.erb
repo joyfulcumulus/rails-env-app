@@ -15,9 +15,9 @@
         </div>
         <div>
         <% if chatroom.messages.last.nil? %>
-          <p class="mb-0">N.A.</p>
+          <p class="mb-0 text-end">N.A.</p>
         <% else %>
-          <p class="mb-0"><%= chatroom.messages.last.created_at.strftime("%I %M %p") %></p>
+          <p class="mb-0 text-end"><%= chatroom.messages.last.created_at.strftime("%I %M %p") %></p>
         <% end %>
         </div>
       </div>
@@ -25,7 +25,7 @@
       <% if chatroom.messages.last.nil? %>
         <p class="mb-0">No messages</p>
       <% else %>
-        <p class="mb-0"><%= chatroom.messages.last.content.user.first_name %>: <%= chatroom.messages.last.content.truncate(30) %></p>
+        <p class="mb-0"><%= chatroom.messages.last.user.first_name %>: <%= chatroom.messages.last.content.truncate(30) %></p>
       <% end %>
 
     </div>
