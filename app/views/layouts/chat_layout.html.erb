@@ -11,7 +11,11 @@
   </head>
 
   <body>
-    <div class="layout-container" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+    <div class="layout-container"
+      data-controller="chatroom-subscription"
+      data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+      data-chatroom-subscription-user-id-value="<%= current_user.id %>"
+    >
       <%= render "chatrooms/chatheader" %>
       <div class="layout-content">
         <%= yield %>

@@ -25,7 +25,12 @@
 
 .message-sender {
   flex-direction: row-reverse;
+
   .content {
     background-color: #CCEBEB;
+  }
+
+  strong {
+    display: none;
   }
 }
