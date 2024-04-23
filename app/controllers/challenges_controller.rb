@@ -58,6 +58,14 @@ class ChallengesController < ApplicationController
     authorize @participation
     @participation.save!
 
+    @user_estate = @user.address.estate
+    @chatroom = Chatroom.find_or_initialize_by(challenge: @challenge, estate: @user_estate)
+    @chatroom.save!
+
+    @chatroom_member = ChatroomMember.find_or_initialize_by(user: @user, chatroom: @chatroom)
+    authorize @chatroom_member
+    @chatroom_member.save!
+
     respond_to do |format|
       format.json { render json: { message: "ok" }, status: :ok }
     end
