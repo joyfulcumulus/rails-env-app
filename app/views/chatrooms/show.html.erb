@@ -1,4 +1,4 @@
-  <div class="p-2">
+  <div class="p-2" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>
     <% end %>
