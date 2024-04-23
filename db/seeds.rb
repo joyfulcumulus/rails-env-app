@@ -283,13 +283,8 @@ puts "challenge events created..."
 
 # create chatrooms
 
-estate1_chatroom1 = Chatroom.create!(
+estate1_recycling_chatroom = Chatroom.create!(
   challenge: recycling_challenge,
-  estate: estate1
-)
-
-estate1_chatroom2 = Chatroom.create!(
-  challenge: waste_challenge,
   estate: estate1
 )
 
@@ -319,6 +314,16 @@ puts "chatrooms created..."
     user:
   )
 
+  participation = Participation.create!(
+    user:,
+    challenge: recycling_challenge # every user joined the recycling challenge
+  )
+
+  chatroom_member = ChatroomMember.create!(
+    user:,
+    chatroom: estate1_recycling_chatroom # every user part of the recycling challenge group chat
+  )
+
   action1 = Action.create!(
     recyclable_weight: rand(78..150) / 100, # randomised 0.78-1.5kg
     user:,
@@ -337,7 +342,7 @@ puts "chatrooms created..."
 
 end
 
-puts "users created... with past actions..."
+puts "users created... all part of recycling challenge..."
 
 # create points history data for each user
   # compute total recycle rate (total waste = 1kg / person, which is 10kg total)
