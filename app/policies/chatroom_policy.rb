@@ -1,11 +1,11 @@
 class ChatroomPolicy < ApplicationPolicy
   def show?
-    true # temporarily allow all users to see all chatrooms
+    record.users.include?(user)
   end
 
   class Scope < Scope
     def resolve
-      scope.all # temporarily allow all users to see all chatrooms
+      scope.joins(:chatroom_members).where(chatroom_members: { user: })
     end
   end
 end
