@@ -1,0 +1,12 @@
+.challenge-event-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1rem;
+}
+
+@media(max-width: 768px) {
+  .challenge-event-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

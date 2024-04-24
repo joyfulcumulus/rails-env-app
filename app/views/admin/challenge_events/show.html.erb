@@ -1,5 +1,18 @@
-<h1>Challenge Event Show Page</h1>
+<div class="challenge-event-grid p-3">
+  <div class="text-center">
+    <h2 class="fs-6">Scan with One Service app to collect points</h2>
+    <p>QR code here</p>
+    <br>
+  </div>
 
-<p>Start Date-Time <%= @challenge_event.start_datetime %></p>
-<p>End Date-Time <%= @challenge_event.end_datetime %></p>
-<p>Related Challenge <%= @challenge_event.challenge.name %></p>
+  <div>
+    <h1 class="fs-2">Points Collection</h1>
+    <br>
+    <h2 class="fs-4"><%= @challenge_event.challenge.name %></h2>
+    <p>Challenge Duration: <%= @challenge_event.challenge.start_date.strftime("%e %b %Y") %> to <%= @challenge_event.challenge.end_date.strftime("%e %b %Y") %></p>
+    <br>
+    <h2 class="fs-4">Event Details</h2>
+    <p class="mb-0">Collection Time: <%= @challenge_event.start_datetime.strftime("%e %b %Y %I:%M %p") %> - <%= @challenge_event.end_datetime.strftime("%I:%M %p") %></p>
+    <p>Location: Islandwide</p>
+  </div>
+</div>
