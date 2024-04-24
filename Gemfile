@@ -59,6 +59,9 @@ gem "pundit"
 # For external CDN
 gem "cloudinary"
 
+# For QR code generation
+gem 'rqrcode'
+
 group :development, :test do
   gem "dotenv-rails"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
