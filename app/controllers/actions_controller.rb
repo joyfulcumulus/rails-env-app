@@ -9,7 +9,15 @@ class ActionsController < ApplicationController
   end
 
   def create
-    raise
+    @recyclable_weight = params[:recyclableWeight]
+    @challenge_event = ChallengeEvent.find(params[:challengeEventId])
+    @action = Action.new(recyclable_weight: @recyclable_weight, challenge_event: @challenge_event, user: current_user)
+    authorize @action
+    @action.save!
+
+    respond_to do |format|
+      format.json { render json: { message: "ok" }, status: :ok }
+    end
   end
 
 end

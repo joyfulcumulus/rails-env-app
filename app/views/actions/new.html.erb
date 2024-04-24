@@ -1,4 +1,7 @@
-<div class="p-3">
+<div data-controller="actions" class="p-3"
+  data-actions-challenge-event-id-value="<%= @challenge_event.id %>"
+  data-actions-recyclable-weight-value="<%= @recyclable_weight %>"
+>
   <h1>Check Submission Information</h1>
   <br>
   <h2 class="fs-4">Event Participation Details</h2>
@@ -10,5 +13,7 @@
   <p class="mb-1">Full Name: <%= @user.first_name %> <%= @user.last_name %></p>
   <p class="mb-1">Email: <%= @user.email %></p>
   <br>
-  <input data-action="" class="btn-pri-small-turquoise" type="submit" value="Submit">
+  <input data-action="click->actions#submit" class="btn-pri-small-turquoise" type="submit" value="Submit">
+
+  <%= render "popup" %>
 </div>
