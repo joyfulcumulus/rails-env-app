@@ -1,12 +1,14 @@
-<div data-actions-target="successpopup" class="popup-full">
-  <div>
-    <%= image_tag "action_success.png", alt: "Recycling Image" %>
-  </div>
+<div data-actions-target="successpopup" class="popup-full-container">
+  <div class="popup-full-content">
+    <div>
+      <%= image_tag "action_success.png", alt: "Recycling Image" %>
+    </div>
 
-  <div>
-    <h1>Thanks, <%= @user.first_name %>!</h1>
-    <p>You have recycled <strong><%= @recyclable_weight %>kg</strong> of waste.</p>
-    <p class="popup-subtext">Points will be credited on Sunday 0000h if your estate has hit the recycling target</p>
-    <%= link_to "Back to Challenge", challenge_path(@challenge_event.challenge), class: "btn-pri-small-turquoise" %>
+    <div>
+      <h1>Thanks, <%= @user.first_name %>!</h1>
+      <p>You have recycled <strong><%= @recyclable_weight %>kg</strong> of waste.</p>
+      <p class="popup-subtext">Points will be credited on Sunday 0000h if your estate has hit the recycling target</p>
+      <%= link_to "Back to Challenge", challenge_path(@challenge_event.challenge), class: "btn-pri-small-turquoise" %>
+    </div>
   </div>
 </div>
