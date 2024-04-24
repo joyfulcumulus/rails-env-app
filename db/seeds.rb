@@ -325,13 +325,13 @@ puts "chatrooms created..."
   )
 
   action1 = Action.create!(
-    recyclable_weight: rand(78..150) / 100, # randomised 0.78-1.5kg
+    recyclable_weight: rand(78..150) / 100.00, # randomised 0.78-1.5kg
     user:,
     challenge_event: recycling_event1
   )
 
   action2 = Action.create!(
-    recyclable_weight: rand(78..150) / 100, # randomised 0.78-1.5kg
+    recyclable_weight: rand(78..150) / 100.00, # randomised 0.78-1.5kg
     user:,
     challenge_event: recycling_event2
   )

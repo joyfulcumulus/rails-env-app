@@ -13,7 +13,8 @@
     <p>Challenge Duration: <%= @challenge_event.challenge.start_date.strftime("%e %b %Y") %> to <%= @challenge_event.challenge.end_date.strftime("%e %b %Y") %></p>
     <br>
     <h2 class="fs-4">Event Details</h2>
-    <p class="mb-0">Collection Time: <%= @challenge_event.start_datetime.strftime("%e %b %Y %I:%M %p") %> - <%= @challenge_event.end_datetime.strftime("%I:%M %p") %></p>
+    <p class="mb-1">Event ID: <%= @challenge_event.id %></p>
+    <p class="mb-1">Collection Time: <%= @challenge_event.start_datetime.strftime("%e %b %Y %I:%M %p") %> - <%= @challenge_event.end_datetime.strftime("%I:%M %p") %></p>
     <p>Location: Islandwide</p>
   </div>
 </div>

@@ -1,1 +1,14 @@
-<h1>Actions New Page</h1>
+<div class="p-3">
+  <h1>Check Submission Information</h1>
+  <br>
+  <h2 class="fs-4">Event Participation Details</h2>
+  <p class="mb-1">Event ID: <%= @challenge_event.id %></p>
+  <p class="mb-1">Collection Time: <%= @challenge_event.start_datetime.strftime("%e %b %Y %I:%M %p") %> - <%= @challenge_event.end_datetime.strftime("%I:%M %p") %></p>
+  <p class="mb-1">Recyclable Weight Contributed: <%= @recyclable_weight %>kg</p>
+  <br>
+  <h2 class="fs-4">User Details</h2>
+  <p class="mb-1">Full Name: <%= @user.first_name %> <%= @user.last_name %></p>
+  <p class="mb-1">Email: <%= @user.email %></p>
+  <br>
+  <input data-action="" class="btn-pri-small-turquoise" type="submit" value="Submit">
+</div>
