@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  resources :challenge_events, only: :show do
+  namespace :admin do
+    resources :challenge_events
+  end
+
+  resources :challenge_events, only: [] do
     resources :actions, only: %i[new create]
   end
 
