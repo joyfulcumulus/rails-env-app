@@ -14,7 +14,7 @@ class Admin::ChallengeEventsController < ApplicationController
   def show
     @challenge_event = ChallengeEvent.find(params[:id])
     authorize @challenge_event
-    url = "/challenge_events/#{params[:id]}/actions/new"
+    url = url_for(action: 'new', controller: '/actions', challenge_event_id: @challenge_event.id)
     @qr_code = RQRCode::QRCode.new(url)
     @svg = @qr_code.as_svg(
       offset: 0,
