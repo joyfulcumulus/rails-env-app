@@ -13,7 +13,11 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
     authorize @challenge
     @rewards_programmes = RewardsProgramme.where(challenge: @challenge)
-    @final_target_metric = @rewards_programmes.maximum(:target)
+    if @challenge.metric_objective == "maximize"
+      @final_target_metric = @rewards_programmes.maximum(:target)
+    else
+      @final_target_metric = @rewards_programmes.minimum(:target)
+    end
     @latest_estate_metric = latest_estate_metric
     @title = "Challenge Details"
     render layout: "challenge_layout"
