@@ -335,6 +335,12 @@ puts "chatrooms created..."
     user:,
     challenge_event: recycling_event2
   )
+
+  action3 = Action.create!(
+    recyclable_weight: rand(78..150) / 100.00, # randomised 0.78-1.5kg
+    user:,
+    challenge_event: recycling_event3
+  )
   # Dont use cloudinary first, generate user without avatar
   # file = URI.open("https://thispersondoesnotexist.com/")
   # user.avatar.attach(io: file, filename: "avatar#{num}.jpeg", content_type: "image/jpeg")

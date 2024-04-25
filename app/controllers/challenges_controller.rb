@@ -13,6 +13,7 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
     authorize @challenge
     @rewards_programmes = RewardsProgramme.where(challenge: @challenge)
+    @latest_estate_metric = latest_estate_metric
     @title = "Challenge Details"
     render layout: "challenge_layout"
   end
@@ -75,5 +76,18 @@ class ChallengesController < ApplicationController
 
   def params_challenge
     params.require(:challenge).permit(:name, :description, :participant_criteria, :start_date, :end_date, :cover [])
+  end
+
+  def latest_estate_metric
+    latest_event = ChallengeEvent.where("end_datetime < ?", Date.today.to_datetime).order(end_datetime: :desc).first
+    # TO DO: amend above statement to filter by challenge, now always taking latest challenge regardless of type
+    user_estate = current_user.address.estate
+    users_in_estate = User.includes(:address).where(address: { estate: user_estate })
+    total_recyclable_waste = Action.includes(:user)
+                                    .where(challenge_event: latest_event)
+                                    .where(users: { id: users_in_estate.map(&:id) })
+                                    .sum(:recyclable_weight)
+    total_waste = users_in_estate.count * 6.0
+    recycling_rate = total_recyclable_waste / total_waste
   end
 end
