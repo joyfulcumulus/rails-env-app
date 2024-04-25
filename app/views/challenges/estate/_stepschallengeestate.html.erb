@@ -1,1 +1,28 @@
-<p>Steps challenge estate section</p>
+<h2 class="fs-5"><%= challenge.metric_name %> Performance</h2>
+<div class="d-flex justify-content-between align-items-center mb-2">
+  <div class="progress flex-grow-1 me-4" role="progressbar">
+    <div class="progress-bar bar-yellow text-dark" style="width: <%= ((latest_estate_metric * 100) / final_target_metric) * 100 %>%">
+      <%= (latest_estate_metric * 100).round %><%= rewards_programmes.first.unit_of_measurement %>
+    </div>
+  </div>
+  <div>
+    <p class="mb-0 metric-green fw-semibold fs-4"><%= final_target_metric %><%= rewards_programmes.first.unit_of_measurement %></p>
+    <p class="mb-0">Final Target</p>
+  </div>
+</div>
+<div class="d-flex align-items-center mb-4">
+  <p class="mb-0"><span class="fw-semibold fs-4"><%= ((challenge.end_date - Date.today.to_datetime) / 2629746.00).round %></span> months till end of challenge</p>
+  <p class="mb-0 ms-3"><span class="fw-semibold fs-4"><%= challenge.users.count %></span> residents participating</p>
+</div>
+
+<h2 class="fs-5">Steps Performance Tracking</h2>
+<p class="mb-4">The average no. of steps per person in the estate will be computed every week, and results announced on Sunday night 11.59pm</p>
+
+<h2 class="fs-5">Main Contact Person for Challenge</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <%= image_tag "avatar.png", class: "avatar", alt: "default avatar" %>
+    <span>Organiser name</span>
+  </div>
+  <%= link_to "Chat", "#", class: "btn-pri-small-turquoise" %>
+</div>
