@@ -12,7 +12,11 @@
 
     <div data-challenges-filter-target="all">
       <% @challenges.each do |challenge| %>
-        <%= render "challengecard", challenge: challenge %>
+        <% @latest_estate_metric = challenge.name == "National Recycling Challenge" ? metric_fr_actions(challenge.id) : 0 %>
+        <%= render "challengecard",
+          challenge: challenge,
+          latest_estate_metric: @latest_estate_metric
+        %>
       <% end %>
     </div>
 

@@ -73,12 +73,6 @@ class ChallengesController < ApplicationController
     end
   end
 
-  private
-
-  def params_challenge
-    params.require(:challenge).permit(:name, :description, :participant_criteria, :start_date, :end_date, :cover [])
-  end
-
   def metric_fr_actions(challenge_id)
     latest_event = ChallengeEvent.where(challenge_id:).where("end_datetime < ?", Date.today.to_datetime).order(end_datetime: :desc).first
     user_estate = current_user.address.estate
@@ -90,4 +84,12 @@ class ChallengesController < ApplicationController
     total_waste = users_in_estate.count * 6.0 # assume in this project, weekly waste generated is 6.0kg / user
     return total_recyclable_waste / total_waste
   end
+  helper_method :metric_fr_actions
+
+  private
+
+  def params_challenge
+    params.require(:challenge).permit(:name, :description, :participant_criteria, :start_date, :end_date, :cover [])
+  end
+
 end
