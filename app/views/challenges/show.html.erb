@@ -39,7 +39,7 @@
       <tbody>
       <% @rewards_programmes.each do |reward| %>
         <tr>
-          <td><%= reward.target %><%= reward.unit_of_measurement %></td>
+          <td><%= reward.target %><%= @challenge.metric_unit %></td>
           <td><%= reward.points %></td>
         </tr>
       <% end %>

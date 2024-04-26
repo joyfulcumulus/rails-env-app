@@ -50,6 +50,7 @@ recycling_challenge = Challenge.create!(
   participant_criteria: "Any household",
   metric_name: "Recycling Rate",
   metric_objective: "maximize",
+  metric_unit: "%",
   start_date: Time.new(2024, 4, 1, 0, 0, 0),
   end_date: Time.new(2024, 12, 31, 23, 59, 59)
 )
@@ -60,6 +61,7 @@ waste_challenge = Challenge.create!(
   participant_criteria: "Any household",
   metric_name: "Waste Vol.",
   metric_objective: "minimize",
+  metric_unit: "kg/capita/week",
   start_date: Time.new(2024, 4, 1, 0, 0, 0),
   end_date: Time.new(2024, 12, 31, 23, 59, 59)
 )
@@ -73,6 +75,7 @@ health_challenge = Challenge.create!(
   b)Aged 17 years or older (based on birth year) at point of registration",
   metric_name: "No. of Steps",
   metric_objective: "maximize",
+  metric_unit: "steps",
   start_date: Time.new(2022, 4, 1, 0, 0, 0),
   end_date: Time.new(2024, 12, 31, 23, 59, 59)
 )
@@ -83,112 +86,96 @@ puts "challenges created..."
 
 recycling_rewards1 = RewardsProgramme.create!(
   target: 22,
-  unit_of_measurement: "%",
   points: 5,
   challenge: recycling_challenge
 )
 
 recycling_rewards2 = RewardsProgramme.create!(
   target: 23,
-  unit_of_measurement: "%",
   points: 5,
   challenge: recycling_challenge
 )
 
 recycling_rewards3 = RewardsProgramme.create!(
   target: 24,
-  unit_of_measurement: "%",
   points: 10,
   challenge: recycling_challenge
 )
 
 recycling_rewards4 = RewardsProgramme.create!(
   target: 25,
-  unit_of_measurement: "%",
   points: 10,
   challenge: recycling_challenge
 )
 
 recycling_rewards5 = RewardsProgramme.create!(
   target: 26,
-  unit_of_measurement: "%",
   points: 15,
   challenge: recycling_challenge
 )
 
 recycling_rewards6 = RewardsProgramme.create!(
   target: 27,
-  unit_of_measurement: "%",
   points: 15,
   challenge: recycling_challenge
 )
 
 recycling_rewards7 = RewardsProgramme.create!(
   target: 28,
-  unit_of_measurement: "%",
   points: 20,
   challenge: recycling_challenge
 )
 
 recycling_rewards8 = RewardsProgramme.create!(
   target: 29,
-  unit_of_measurement: "%",
   points: 20,
   challenge: recycling_challenge
 )
 
 recycling_rewards9 = RewardsProgramme.create!(
   target: 30,
-  unit_of_measurement: "%",
   points: 25,
   challenge: recycling_challenge
 )
 
 waste_rewards1 = RewardsProgramme.create!(
   target: 6.0,
-  unit_of_measurement: "kg/capita/week",
   points: 5,
   challenge: waste_challenge
 )
 
 waste_rewards2 = RewardsProgramme.create!(
   target: 5.8,
-  unit_of_measurement: "kg/capita/week",
   points: 5,
   challenge: waste_challenge
 )
 
 waste_rewards3 = RewardsProgramme.create!(
   target: 5.6,
-  unit_of_measurement: "kg/capita/week",
   points: 5,
   challenge: waste_challenge
 )
 
 waste_rewards4 = RewardsProgramme.create!(
   target: 5.4,
-  unit_of_measurement: "kg/capita/week",
   points: 10,
   challenge: waste_challenge
 )
 
 waste_rewards5 = RewardsProgramme.create!(
   target: 5.2,
-  unit_of_measurement: "kg/capita/week",
   points: 10,
   challenge: waste_challenge
 )
 
 waste_rewards6 = RewardsProgramme.create!(
   target: 5.0,
-  unit_of_measurement: "kg/capita/week",
   points: 10,
   challenge: waste_challenge
 )
 
 health_rewards1 = RewardsProgramme.create!(
   target: 5000,
-  unit_of_measurement: "steps",
   points: 10,
   challenge: health_challenge
 )

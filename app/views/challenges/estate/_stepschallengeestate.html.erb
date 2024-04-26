@@ -2,11 +2,11 @@
 <div class="d-flex justify-content-between align-items-center mb-2">
  <div>
     <p class="mb-0 fw-semibold">Current</p>
-    <p class="mb-0"><span class="mb-0 stats-yellow fw-semibold fs-4"><%= latest_estate_metric %></span><%= rewards_programmes.first.unit_of_measurement %></p>
+    <p class="mb-0"><span class="mb-0 stats-yellow fw-semibold fs-4"><%= latest_estate_metric %></span><%= challenge.metric_unit %></p>
   </div>
   <div>
     <p class="mb-0 fw-semibold">Final Target</p>
-    <p class="mb-0"><span class="mb-0 stats-green fw-semibold fs-4"><%= final_target_metric %></span><%= rewards_programmes.first.unit_of_measurement %></p>
+    <p class="mb-0"><span class="mb-0 stats-green fw-semibold fs-4"><%= final_target_metric %></span><%= challenge.metric_unit %></p>
   </div>
 </div>
 <div class="d-flex align-items-center mb-4">

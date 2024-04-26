@@ -1,5 +1,5 @@
 class RewardsProgramme < ApplicationRecord
   belongs_to :challenge
 
-  validates :target, :unit_of_measurement, :points, presence: true
+  validates :target, :points, presence: true
 end
