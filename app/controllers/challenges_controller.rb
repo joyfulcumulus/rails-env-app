@@ -13,12 +13,8 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
     authorize @challenge
     @rewards_programmes = RewardsProgramme.where(challenge: @challenge)
-    if @challenge.metric_objective == "maximize"
-      @final_target_metric = @rewards_programmes.maximum(:target)
-    else
-      @final_target_metric = @rewards_programmes.minimum(:target)
-    end
-    @latest_estate_metric = latest_estate_metric
+    @final_target_metric = @challenge.metric_objective == "maximize" ? @rewards_programmes.maximum(:target) : @rewards_programmes.minimum(:target)
+    @latest_estate_metric = @challenge.name == "National Recycling Challenge" ? calculate_recycling_rate : 0
     @title = "Challenge Details"
     render layout: "challenge_layout"
   end
@@ -83,7 +79,7 @@ class ChallengesController < ApplicationController
     params.require(:challenge).permit(:name, :description, :participant_criteria, :start_date, :end_date, :cover [])
   end
 
-  def latest_estate_metric
+  def calculate_recycling_rate
     latest_event = ChallengeEvent.where("end_datetime < ?", Date.today.to_datetime).order(end_datetime: :desc).first
     # TO DO: amend above statement to filter by challenge, now always taking latest challenge regardless of type
     user_estate = current_user.address.estate
