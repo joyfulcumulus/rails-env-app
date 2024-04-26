@@ -14,7 +14,7 @@ class ChallengesController < ApplicationController
     authorize @challenge
     @rewards_programmes = RewardsProgramme.where(challenge: @challenge)
     @final_target_metric = @challenge.metric_objective == "maximize" ? @rewards_programmes.maximum(:target) : @rewards_programmes.minimum(:target)
-    @latest_estate_metric = @challenge.name == "National Recycling Challenge" ? calculate_recycling_rate : 0
+    @latest_estate_metric = @challenge.name == "National Recycling Challenge" ? metric_fr_actions(params[:id]) : 0
     @title = "Challenge Details"
     render layout: "challenge_layout"
   end
@@ -79,16 +79,15 @@ class ChallengesController < ApplicationController
     params.require(:challenge).permit(:name, :description, :participant_criteria, :start_date, :end_date, :cover [])
   end
 
-  def calculate_recycling_rate
-    latest_event = ChallengeEvent.where("end_datetime < ?", Date.today.to_datetime).order(end_datetime: :desc).first
-    # TO DO: amend above statement to filter by challenge, now always taking latest challenge regardless of type
+  def metric_fr_actions(challenge_id)
+    latest_event = ChallengeEvent.where(challenge_id:).where("end_datetime < ?", Date.today.to_datetime).order(end_datetime: :desc).first
     user_estate = current_user.address.estate
     users_in_estate = User.includes(:address).where(address: { estate: user_estate })
     total_recyclable_waste = Action.includes(:user)
                                     .where(challenge_event: latest_event)
                                     .where(users: { id: users_in_estate.map(&:id) })
                                     .sum(:recyclable_weight)
-    total_waste = users_in_estate.count * 6.0
-    recycling_rate = total_recyclable_waste / total_waste
+    total_waste = users_in_estate.count * 6.0 # assume in this project, weekly waste generated is 6.0kg / user
+    return total_recyclable_waste / total_waste
   end
 end
