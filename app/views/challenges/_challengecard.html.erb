@@ -20,8 +20,15 @@
           <span class="metric-green fw-semibold fs-4">
             <%= challenge.metric_objective == "maximize" ? RewardsProgramme.where(challenge: challenge).maximum(:target) : RewardsProgramme.where(challenge: challenge).minimum(:target) %>
           </span>
+          <%= challenge.metric_unit %>
         </p>
-        <p>Current <span class="metric-yellow fw-semibold fs-4"><%= (@latest_estate_metric * 100).round %></span></p>
+        <p>
+          Current
+          <span class="metric-yellow fw-semibold fs-4">
+            <%= (@latest_estate_metric * 100).round %>
+          </span>
+          <%= challenge.metric_unit %>
+        </p>
       </div>
 
       <div class="d-flex justify-content-between align-items-center">
