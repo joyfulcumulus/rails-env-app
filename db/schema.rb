@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_26_075616) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_26_081212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_26_075616) do
     t.string "participant_criteria", null: false
     t.string "metric_name", null: false
     t.string "metric_objective"
-    t.string "metric_unit"
+    t.string "metric_unit", null: false
   end
 
   create_table "chatroom_members", force: :cascade do |t|
@@ -151,7 +151,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_26_075616) do
 
   create_table "rewards_programmes", force: :cascade do |t|
     t.float "target", null: false
-    t.string "unit_of_measurement"
     t.integer "points", null: false
     t.bigint "challenge_id", null: false
     t.datetime "created_at", null: false

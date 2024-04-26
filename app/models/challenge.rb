@@ -9,5 +9,5 @@ class Challenge < ApplicationRecord
 
   OBJECTIVES = %w[maximize minimize]
   validates :metric_objective, inclusion: { in: OBJECTIVES }
-  validates :name, :description, :participant_criteria, :start_date, :end_date, presence: true
+  validates :name, :description, :participant_criteria, :start_date, :end_date, :metric_name, :metric_unit, presence: true
 end
