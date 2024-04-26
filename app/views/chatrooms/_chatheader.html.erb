@@ -14,7 +14,7 @@
       </div>
       <div class="flex-grow-1">
         <h1 class="m-0 fs-6"><%= @chatroom.challenge.name.truncate(32) %></h1>
-        <p class="m-0 fs-6"><%= @chatroom.estate.name %>: XXX members</p>
+        <p class="m-0 fs-6"><%= @chatroom.estate.name %>: <%= @chatroom.users.count %> members</p>
       </div>
     </div>
 
