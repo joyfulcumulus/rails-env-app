@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :challenge_events
+    get "dashboard", to: "metrics#dashboard"
+    post "award_points", to: "metrics#award_points"
   end
 
   resources :challenge_events, only: [] do
