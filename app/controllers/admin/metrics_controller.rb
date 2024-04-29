@@ -7,8 +7,10 @@ class Admin::MetricsController < ApplicationController
   end
 
   def award_points
+    authorize :metric, :award_points?
     AwardPointsJob.perform_now
-    render json: { message: "Job triggered successfully" }
+    respond_to do |format|
+      format.json { render json: { message: "Job triggered successfully" }, status: :ok }
+    end
   end
-
 end
