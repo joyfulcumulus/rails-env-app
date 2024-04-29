@@ -22,7 +22,7 @@
       </div>
 
       <div class="d-flex justify-content-between align-items-center">
-        <p>Joined residents <span class="fw-semibold fs-4"><%= challenge.users.count %></span></p>
+        <p>Participants <span class="fw-semibold fs-4"><%= num_participants %></span></p>
         <% if @challenges_participated.include?(challenge) %>
           <p>My points <span class="fw-semibold fs-4"><%= challenge.participations.find_by(user: current_user).points %></span></p>
         <% end %>

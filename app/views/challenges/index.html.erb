@@ -13,9 +13,11 @@
     <div data-challenges-filter-target="all">
       <% @challenges.each do |challenge| %>
         <% @latest_estate_metric = challenge.name == "National Recycling Challenge" ? metric_fr_actions(challenge.id) : 0 %>
+        <% @num_participants = challenge.users.includes(:address).where(address: { estate: current_user.address.estate }).count %>
         <%= render "challengecard",
           challenge: challenge,
-          latest_estate_metric: @latest_estate_metric
+          latest_estate_metric: @latest_estate_metric,
+          num_participants: @num_participants
         %>
       <% end %>
     </div>
@@ -23,9 +25,11 @@
     <div data-challenges-filter-target="mine" class="d-none">
       <% @challenges_participated.each do |challenge| %>
         <% @latest_estate_metric = challenge.name == "National Recycling Challenge" ? metric_fr_actions(challenge.id) : 0 %>
+        <% @num_participants = challenge.users.includes(:address).where(address: { estate: current_user.address.estate }).count %>
         <%= render "challengecard",
           challenge: challenge,
-          latest_estate_metric: @latest_estate_metric
+          latest_estate_metric: @latest_estate_metric,
+          num_participants: @num_participants
         %>
       <% end %>
     </div>
