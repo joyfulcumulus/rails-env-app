@@ -12,6 +12,7 @@ class ChallengesController < ApplicationController
   def show
     @challenge = Challenge.find(params[:id])
     authorize @challenge
+    @num_participants = @challenge.users.includes(:address).where(address: { estate: current_user.address.estate }).count
     @rewards_programmes = RewardsProgramme.where(challenge: @challenge)
     @final_target_metric = @challenge.metric_objective == "maximize" ? @rewards_programmes.maximum(:target) : @rewards_programmes.minimum(:target)
     @latest_estate_metric = @challenge.name == "National Recycling Challenge" ? metric_fr_actions(params[:id]) : 0

@@ -55,21 +55,24 @@
       challenge: @challenge,
       latest_estate_metric: @latest_estate_metric,
       final_target_metric: @final_target_metric,
-      rewards_programmes: @rewards_programmes
+      rewards_programmes: @rewards_programmes,
+      num_participants: @num_participants
     %>
   <% elsif @challenge.name == "National Waste Reduction Challenge" %>
     <%= render "challenges/estate/wastechallengeestate",
       challenge: @challenge,
       latest_estate_metric: @latest_estate_metric,
       final_target_metric: @final_target_metric,
-      rewards_programmes: @rewards_programmes
+      rewards_programmes: @rewards_programmes,
+      num_participants: @num_participants
     %>
   <% elsif @challenge.name == "National Steps Challenge" %>
     <%= render "challenges/estate/stepschallengeestate",
       challenge: @challenge,
       latest_estate_metric: @latest_estate_metric,
       final_target_metric: @final_target_metric,
-      rewards_programmes: @rewards_programmes
+      rewards_programmes: @rewards_programmes,
+      num_participants: @num_participants
     %>
   <% else %>
     <p>No template created for this new challenge. Outside project scope.</p>

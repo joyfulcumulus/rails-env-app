@@ -11,7 +11,7 @@
 </div>
 <div class="d-flex align-items-center mb-4">
   <p class="mb-0"><span class="fw-semibold fs-4"><%= ((challenge.end_date - Date.today.to_datetime) / 2629746.00).round %></span> months till end of challenge</p>
-  <p class="mb-0 ms-3"><span class="fw-semibold fs-4"><%= challenge.users.count %></span> residents participating</p>
+  <p class="mb-0 ms-3"><span class="fw-semibold fs-4"><%= num_participants %></span> residents participating</p>
 </div>
 
 <h2 class="fs-5">Steps Performance Tracking</h2>
