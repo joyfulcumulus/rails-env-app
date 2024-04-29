@@ -9,6 +9,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
+          <% if current_user.admin == true %>
+          <li class="nav-item">
+            <%= link_to "Admin Dashboard", admin_dashboard_path, class: "nav-link" %>
+          </li>
+          <% end %>
           <li class="nav-item active">
             <%= link_to "Notifications", "#", class: "nav-link" %>
           </li>
