@@ -306,7 +306,8 @@ puts "chatrooms created..."
 
   participation = Participation.create!(
     user:,
-    challenge: recycling_challenge # every user joined the recycling challenge
+    challenge: recycling_challenge, # every user joined the recycling challenge
+    points: 5 # points up to recycling event 3
   )
 
   chatroom_member = ChatroomMember.create!(
@@ -315,21 +316,27 @@ puts "chatrooms created..."
   )
 
   action1 = Action.create!(
-    recyclable_weight: rand(78..150) / 100.00, # randomised 0.78-1.5kg
+    recyclable_weight: 1.2, # first week recycling rate 20%, 0 points
     user:,
     challenge_event: recycling_event1
   )
 
   action2 = Action.create!(
-    recyclable_weight: rand(78..150) / 100.00, # randomised 0.78-1.5kg
+    recyclable_weight: 0.96, # second week recycling rate 16%, 0 points
     user:,
     challenge_event: recycling_event2
   )
 
   action3 = Action.create!(
-    recyclable_weight: rand(78..150) / 100.00, # randomised 0.78-1.5kg
+    recyclable_weight: 1.32, # third week recycling rate 22%, 5 points
     user:,
     challenge_event: recycling_event3
+  )
+
+  action4 = Action.create!(
+    recyclable_weight: 1.5, # fourth week recycling rate 25%, 10 points
+    user:,
+    challenge_event: recycling_event4
   )
   # Dont use cloudinary first, generate user without avatar
   # file = URI.open("https://thispersondoesnotexist.com/")
@@ -339,9 +346,5 @@ puts "chatrooms created..."
 end
 
 puts "users created... all part of recycling challenge..."
-
-# create points history data for each user
-  # compute total recycle rate (total waste = 1kg / person, which is 10kg total)
-  # allocate points to all participating users
 
 puts "seeding entries done!"
