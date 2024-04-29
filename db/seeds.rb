@@ -278,6 +278,11 @@ estate1_recycling_chatroom = Chatroom.create!(
   estate: estate1
 )
 
+estate2_recycling_chatroom = Chatroom.create!(
+  challenge: recycling_challenge,
+  estate: estate2
+)
+
 puts "chatrooms created..."
 
 # create 8 resident users in Tampines and 2 admin users
@@ -345,6 +350,71 @@ puts "chatrooms created..."
 
 end
 
-puts "users created... all part of recycling challenge..."
+# create 5 resident users in Hougang
+
+(11..15).to_a.each do |num|
+  user_address = Address.create!(
+    street: "Hougang Ave #{rand(1..10)}",
+    zipcode: %w[539830 538785 530836 534037 530130].sample,
+    unit_number: "0#{rand(1..9)}-4432",
+    estate: estate2
+  )
+
+  user = User.create!(
+    email: "user#{num}@email.com",
+    password: "password",
+    first_name: %w[Meiling Wenjuan Catherine Zixiang Alvin Kangle].sample,
+    last_name: %w[Lee Tan Wijeysingha Morrison Ng Heng].sample,
+    admin: false, # no admin here
+    address: user_address
+  )
+
+  user_total_points = TotalPoint.create!(
+    total_points: 60, # every user has 60 points from previous challenges
+    user:
+  )
+
+  participation = Participation.create!(
+    user:,
+    challenge: recycling_challenge, # every user joined the recycling challenge
+    points: 15 # points up to recycling event 3
+  )
+
+  chatroom_member = ChatroomMember.create!(
+    user:,
+    chatroom: estate2_recycling_chatroom # every user part of the recycling challenge group chat
+  )
+
+  action1 = Action.create!(
+    recyclable_weight: 1.5, # first week recycling rate 25%, 10 points
+    user:,
+    challenge_event: recycling_event1
+  )
+
+  action2 = Action.create!(
+    recyclable_weight: 0.96, # second week recycling rate 16%, 0 points
+    user:,
+    challenge_event: recycling_event2
+  )
+
+  action3 = Action.create!(
+    recyclable_weight: 1.32, # third week recycling rate 22%, 5 points
+    user:,
+    challenge_event: recycling_event3
+  )
+
+  action4 = Action.create!(
+    recyclable_weight: 1.5, # fourth week recycling rate 25%, 10 points
+    user:,
+    challenge_event: recycling_event4
+  )
+  # Dont use cloudinary first, generate user without avatar
+  # file = URI.open("https://thispersondoesnotexist.com/")
+  # user.avatar.attach(io: file, filename: "avatar#{num}.jpeg", content_type: "image/jpeg")
+  # user.save
+
+end
+
+puts "users created... all join recycling challenge..."
 
 puts "seeding entries done!"
