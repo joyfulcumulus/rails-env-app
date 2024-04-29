@@ -1,4 +1,19 @@
 <div data-controller="metrics">
-  <h1>Metrics Dashboard</h1>
+  <h1>Your Progress</h1>
+
+  <div>
+    <h2>Points Collected</h2>
+    <div class="chart">
+      <canvas></canvas>
+    </div>
+  </div>
+
+  <div>
+    <h2>Waste Recycled</h2>
+    <div class="chart">
+      <canvas data-metrics-target="donut"></canvas>
+    </div>
+  </div>
+
   <input data-action="click->metrics#awardPoints" class="btn-pri-small-turquoise" type="submit" value="Award Points">
 </div>
