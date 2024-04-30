@@ -21,32 +21,41 @@ export default class extends Controller {
   }
 
   connect() {
-    const labels = Object.keys(worldPopulationGrowth);
-    const data = Object.values(worldPopulationGrowth);
+    const url = `/challenges/${this.challengeIdValue}/points_history`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      let labels1 = Object.keys(data);
+      let data1 = Object.values(data);
 
-    const chart1 = new Chart(
-      this.pointsTarget, // this is the canvas element where the chart will be rendered
-      {
-        type: 'line',
-        options: {
-          plugins: {
-            legend: {
-              display: false
+      const pointsHistoryChart = new Chart(
+        this.pointsTarget, // this is the canvas element where the chart will be rendered
+        {
+          type: 'line',
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
             }
+          },
+          data: {
+            labels: labels1,
+            datasets: [{
+              label: 'Points',
+              data: data1,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }]
           }
-        },
-        data: {
-          labels,
-          datasets: [{
-            label: 'Points',
-            data,
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-          }]
         }
-      }
-    );
+      );
+
+    });
+
+    let labels2 = Object.keys(worldPopulationGrowth);
+    let data2 = Object.values(worldPopulationGrowth);
 
     const chart2 = new Chart(
       this.recyclablesTarget, // this is the canvas element where the chart will be rendered
@@ -60,10 +69,10 @@ export default class extends Controller {
           }
         },
         data: {
-          labels,
+          labels: labels2,
           datasets: [{
             label: 'Vol (kg)',
-            data,
+            data: data2,
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1
@@ -74,14 +83,39 @@ export default class extends Controller {
 
   }
 
-  getPointsHistory(event) {
-    event.preventDefault();
-    const url = `/challenges/${this.challengeIdValue}/points_history`;
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    })
-  }
+  // getPointsHistory() {
+  //   const url = `/challenges/${this.challengeIdValue}/points_history`;
+  //   fetch(url)
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     let labels1 = Object.keys(data);
+  //     let data1 = Object.values(data);
+
+  //     const pointsHistoryChart = new Chart(
+  //       this.pointsTarget, // this is the canvas element where the chart will be rendered
+  //       {
+  //         type: 'line',
+  //         options: {
+  //           plugins: {
+  //             legend: {
+  //               display: false
+  //             }
+  //           }
+  //         },
+  //         data: {
+  //           labels: labels1,
+  //           datasets: [{
+  //             label: 'Points',
+  //             data: data1,
+  //             fill: false,
+  //             borderColor: 'rgb(75, 192, 192)',
+  //             tension: 0.1
+  //           }]
+  //         }
+  //       }
+  //     );
+
+  //   })
+  // }
 
 }

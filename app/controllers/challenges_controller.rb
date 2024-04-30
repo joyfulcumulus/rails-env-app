@@ -76,14 +76,16 @@ class ChallengesController < ApplicationController
 
   def points_history
     challenge = Challenge.find(params[:id])
-    recent_points_history =
+    @recent_points_history =
       PointsAward
       .where(challenge:, user: current_user)
       .joins(:challenge_event)
       .where(challenge:)
       .where("end_datetime < ?", Date.today.to_datetime)
       .where("end_datetime > ?", Date.today.weeks_ago(6).to_datetime)
-
+      .order(end_datetime: :asc)
+    authorize @recent_points_history
+    respond_to :json
   end
 
   def recycled_history
