@@ -21,13 +21,19 @@ class AwardPointsJob < ApplicationJob
       points_for_user = RewardsProgramme.where(challenge:, target: achieved_target).pluck(:points).first
       puts "Points to give each user: #{points_for_user}"
 
-      users_in_estate.each do |user|
-        participation = Participation.find_by(user:, challenge:)
-        participation.update!(points: (participation.points + points_for_user))
-        total_points = TotalPoint.find_by(user:)
-        total_points.update!(total_points: (total_points.total_points + points_for_user))
+      if points_for_user.positive?
+        users_in_estate.each do |user|
+          participation = Participation.find_by(user:, challenge:)
+          participation.update!(points: (participation.points + points_for_user))
+          total_points = TotalPoint.find_by(user:)
+          total_points.update!(total_points: (total_points.total_points + points_for_user))
+          PointsAward.create!(points: points_for_user, user:, challenge:, challenge_event: latest_event)
+          # log the points award inside points award table
+        end
+        puts "Points awarded to each user in estate #{estate.name}!"
+      else
+        puts "No points for user as targets not hit"
       end
-      puts "Points awarded to each user in estate #{estate.name}!"
     end
   end
 end
