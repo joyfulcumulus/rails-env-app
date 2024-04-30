@@ -81,11 +81,11 @@
 
   <div class="p-3 d-none" data-challenges-show-target="home">
     <% if Participation.where(user: current_user, challenge: @challenge).exists? %>
-    <div class="home-grid">
+    <div class="home-grid" data-controller="charts">
       <div class="mb-4">
         <h2 class="fs-5">Points Collected</h2>
-        <div class="chart">
-          <canvas></canvas>
+        <div class="mb-4">
+          <canvas data-charts-target="points"></canvas>
         </div>
 
         <h2 class="fs-5">Points History</h2>
@@ -94,8 +94,8 @@
 
       <div class="mb-4">
         <h2 class="fs-5">Weight of Recyclables</h2>
-        <div class="chart">
-          <canvas data-metrics-target="donut"></canvas>
+        <div>
+          <canvas data-charts-target="recyclables"></canvas>
         </div>
       </div>
     </div>
