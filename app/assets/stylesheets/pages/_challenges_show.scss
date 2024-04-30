@@ -35,3 +35,16 @@
 .form-check {
   border-radius: 10px;
 }
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+
+@media(max-width: 768px) {
+  .home-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
