@@ -16,6 +16,9 @@ const worldPopulationGrowth = {
 
 export default class extends Controller {
   static targets = ["points", "recyclables"]
+  static values = {
+    challengeId: Number
+  }
 
   connect() {
     const labels = Object.keys(worldPopulationGrowth);
@@ -70,4 +73,15 @@ export default class extends Controller {
     );
 
   }
+
+  getPointsHistory(event) {
+    event.preventDefault();
+    const url = `/challenges/${this.challengeIdValue}/points_history`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+  }
+
 }

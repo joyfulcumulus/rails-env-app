@@ -81,7 +81,7 @@
 
   <div class="p-3 d-none" data-challenges-show-target="home">
     <% if Participation.where(user: current_user, challenge: @challenge).exists? %>
-    <div class="home-grid" data-controller="charts">
+    <div class="home-grid" data-controller="charts" data-charts-challenge-id-value = "<%= @challenge.id %>">
       <div class="mb-4">
         <h2 class="fs-5">Points Collected</h2>
         <div class="mb-4">
@@ -90,6 +90,7 @@
 
         <h2 class="fs-5">Points History</h2>
         <p>Table here</p>
+        <input data-action="click->charts#getPointsHistory" class="btn-pri-small-turquoise" type="submit" value="Get Points History">
       </div>
 
       <div class="mb-4">

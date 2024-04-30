@@ -74,6 +74,21 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def points_history
+    challenge = Challenge.find(params[:id])
+    recent_points_history =
+      PointsAward
+      .where(challenge:, user: current_user)
+      .joins(:challenge_event)
+      .where(challenge:)
+      .where("end_datetime < ?", Date.today.to_datetime)
+      .where("end_datetime > ?", Date.today.weeks_ago(6).to_datetime)
+
+  end
+
+  def recycled_history
+  end
+
   def metric_fr_actions(challenge_id)
     latest_event = ChallengeEvent.where(challenge_id:).where("end_datetime < ?", Date.today.to_datetime).order(end_datetime: :desc).first
     user_estate = current_user.address.estate
