@@ -5,15 +5,6 @@ Chart.register(...registerables);
 
 // Connects to data-controller="charts"
 
-const worldPopulationGrowth = {
-  "2020": 7821000000,
-  "2019": 7743000000,
-  "2018": 7662000000,
-  "2017": 7578000000,
-  "2016": 7492000000,
-  "2015": 7405000000,
-};
-
 export default class extends Controller {
   static targets = ["points", "recyclables"]
   static values = {
@@ -21,6 +12,11 @@ export default class extends Controller {
   }
 
   connect() {
+    this.getPointsHistory();
+    this.getRecycledHistory();
+  }
+
+  getPointsHistory() {
     const url = `/challenges/${this.challengeIdValue}/points_history`;
     fetch(url)
     .then(response => response.json())
@@ -51,13 +47,23 @@ export default class extends Controller {
           }
         }
       );
-
     });
+  }
+
+  getRecycledHistory() {
+    const worldPopulationGrowth = {
+      "2020": 7821000000,
+      "2019": 7743000000,
+      "2018": 7662000000,
+      "2017": 7578000000,
+      "2016": 7492000000,
+      "2015": 7405000000,
+    };
 
     let labels2 = Object.keys(worldPopulationGrowth);
     let data2 = Object.values(worldPopulationGrowth);
 
-    const chart2 = new Chart(
+    const recycledHistoryChart = new Chart(
       this.recyclablesTarget, // this is the canvas element where the chart will be rendered
       {
         type: 'line',
@@ -80,42 +86,6 @@ export default class extends Controller {
         }
       }
     );
-
   }
-
-  // getPointsHistory() {
-  //   const url = `/challenges/${this.challengeIdValue}/points_history`;
-  //   fetch(url)
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     let labels1 = Object.keys(data);
-  //     let data1 = Object.values(data);
-
-  //     const pointsHistoryChart = new Chart(
-  //       this.pointsTarget, // this is the canvas element where the chart will be rendered
-  //       {
-  //         type: 'line',
-  //         options: {
-  //           plugins: {
-  //             legend: {
-  //               display: false
-  //             }
-  //           }
-  //         },
-  //         data: {
-  //           labels: labels1,
-  //           datasets: [{
-  //             label: 'Points',
-  //             data: data1,
-  //             fill: false,
-  //             borderColor: 'rgb(75, 192, 192)',
-  //             tension: 0.1
-  //           }]
-  //         }
-  //       }
-  //     );
-
-  //   })
-  // }
 
 }
