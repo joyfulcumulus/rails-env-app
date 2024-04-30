@@ -15,6 +15,7 @@ Message.destroy_all
 ChatroomMember.destroy_all
 Chatroom.destroy_all
 Claim.destroy_all
+PointsAward.destroy_all
 Action.destroy_all
 ChallengeEvent.destroy_all
 Participation.destroy_all
@@ -25,6 +26,7 @@ TotalPoint.destroy_all
 User.destroy_all
 Address.destroy_all
 Estate.destroy_all
+
 
 puts "creating entries..."
 
@@ -51,7 +53,7 @@ recycling_challenge = Challenge.create!(
   metric_name: "Recycling Rate",
   metric_objective: "maximize",
   metric_unit: "%",
-  start_date: Time.new(2024, 4, 1, 0, 0, 0),
+  start_date: Time.new(2024, 3, 1, 0, 0, 0),
   end_date: Time.new(2024, 12, 31, 23, 59, 59)
 )
 
@@ -246,24 +248,54 @@ puts "locations created..."
 # create challenge events
 
 recycling_event1 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 3, 2, 9, 0, 0),
+  end_datetime: Time.new(2024, 3, 2, 12, 0, 0),
+  challenge: recycling_challenge
+)
+
+recycling_event2 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 3, 9, 9, 0, 0),
+  end_datetime: Time.new(2024, 3, 9, 12, 0, 0),
+  challenge: recycling_challenge
+)
+
+recycling_event3 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 3, 16, 9, 0, 0),
+  end_datetime: Time.new(2024, 3, 16, 12, 0, 0),
+  challenge: recycling_challenge
+)
+
+recycling_event4 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 3, 23, 9, 0, 0),
+  end_datetime: Time.new(2024, 3, 23, 12, 0, 0),
+  challenge: recycling_challenge
+)
+
+recycling_event5 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 3, 30, 9, 0, 0),
+  end_datetime: Time.new(2024, 3, 30, 12, 0, 0),
+  challenge: recycling_challenge
+)
+
+recycling_event6 = ChallengeEvent.create!(
   start_datetime: Time.new(2024, 4, 6, 9, 0, 0),
   end_datetime: Time.new(2024, 4, 6, 12, 0, 0),
   challenge: recycling_challenge
 )
 
-recycling_event2 = ChallengeEvent.create!(
+recycling_event7 = ChallengeEvent.create!(
   start_datetime: Time.new(2024, 4, 13, 9, 0, 0),
   end_datetime: Time.new(2024, 4, 13, 12, 0, 0),
   challenge: recycling_challenge
 )
 
-recycling_event3 = ChallengeEvent.create!(
+recycling_event8 = ChallengeEvent.create!(
   start_datetime: Time.new(2024, 4, 20, 9, 0, 0),
   end_datetime: Time.new(2024, 4, 20, 12, 0, 0),
   challenge: recycling_challenge
 )
 
-recycling_event4 = ChallengeEvent.create!(
+recycling_event9 = ChallengeEvent.create!(
   start_datetime: Time.new(2024, 4, 27, 9, 0, 0),
   end_datetime: Time.new(2024, 4, 27, 12, 0, 0),
   challenge: recycling_challenge
@@ -305,14 +337,14 @@ puts "chatrooms created..."
   )
 
   user_total_points = TotalPoint.create!(
-    total_points: 150, # every user has 150 points from previous challenges
+    total_points: 100, # Includes points from previous challenges
     user:
   )
 
   participation = Participation.create!(
     user:,
     challenge: recycling_challenge, # every user joined the recycling challenge
-    points: 5 # points up to recycling event 3
+    points: 35 # points up to recycling event 8
   )
 
   chatroom_member = ChatroomMember.create!(
@@ -338,11 +370,77 @@ puts "chatrooms created..."
     challenge_event: recycling_event3
   )
 
+  points_award3 = PointsAward.create!(
+    points: 5,
+    user:,
+    challenge_event: recycling_event3,
+    challenge: recycling_challenge
+  )
+
   action4 = Action.create!(
     recyclable_weight: 1.5, # fourth week recycling rate 25%, 10 points
     user:,
     challenge_event: recycling_event4
   )
+
+  points_award4 = PointsAward.create!(
+    points: 10,
+    user:,
+    challenge_event: recycling_event4,
+    challenge: recycling_challenge
+  )
+
+  action5 = Action.create!(
+    recyclable_weight: 1.08, # fifth week recycling rate 18%, 0 points
+    user:,
+    challenge_event: recycling_event5
+  )
+
+  action6 = Action.create!(
+    recyclable_weight: 1.35, # sixth week recycling rate 22.5%, 5 points
+    user:,
+    challenge_event: recycling_event6
+  )
+
+  points_award6 = PointsAward.create!(
+    points: 5,
+    user:,
+    challenge_event: recycling_event6,
+    challenge: recycling_challenge
+  )
+
+  action7 = Action.create!(
+    recyclable_weight: 1.41, # seventh week recycling rate 23.5%, 5 points
+    user:,
+    challenge_event: recycling_event7
+  )
+
+  points_award7 = PointsAward.create!(
+    points: 5,
+    user:,
+    challenge_event: recycling_event7,
+    challenge: recycling_challenge
+  )
+
+  action8 = Action.create!(
+    recyclable_weight: 1.53, # eighth week recycling rate 25.5%, 10 points
+    user:,
+    challenge_event: recycling_event8
+  )
+
+  points_award8 = PointsAward.create!(
+    points: 10,
+    user:,
+    challenge_event: recycling_event8,
+    challenge: recycling_challenge
+  )
+
+  action9 = Action.create!(
+    recyclable_weight: 1.56, # ninth week recycling rate 26%, 15 points
+    user:,
+    challenge_event: recycling_event9
+  )
+
   # Dont use cloudinary first, generate user without avatar
   # file = URI.open("https://thispersondoesnotexist.com/")
   # user.avatar.attach(io: file, filename: "avatar#{num}.jpeg", content_type: "image/jpeg")
@@ -370,14 +468,14 @@ end
   )
 
   user_total_points = TotalPoint.create!(
-    total_points: 60, # every user has 60 points from previous challenges
+    total_points: 60, # Includes points from previous challenges
     user:
   )
 
   participation = Participation.create!(
     user:,
     challenge: recycling_challenge, # every user joined the recycling challenge
-    points: 15 # points up to recycling event 3
+    points: 35 # points up to recycling event 8
   )
 
   chatroom_member = ChatroomMember.create!(
@@ -389,6 +487,13 @@ end
     recyclable_weight: 1.5, # first week recycling rate 25%, 10 points
     user:,
     challenge_event: recycling_event1
+  )
+
+  points_award1 = PointsAward.create!(
+    points: 10,
+    user:,
+    challenge_event: recycling_event1,
+    challenge: recycling_challenge
   )
 
   action2 = Action.create!(
@@ -403,10 +508,68 @@ end
     challenge_event: recycling_event3
   )
 
+  points_award3 = PointsAward.create!(
+    points: 5,
+    user:,
+    challenge_event: recycling_event3,
+    challenge: recycling_challenge
+  )
+
   action4 = Action.create!(
     recyclable_weight: 1.5, # fourth week recycling rate 25%, 10 points
     user:,
     challenge_event: recycling_event4
+  )
+
+  points_award4 = PointsAward.create!(
+    points: 10,
+    user:,
+    challenge_event: recycling_event4,
+    challenge: recycling_challenge
+  )
+
+  action5 = Action.create!(
+    recyclable_weight: 1.35, # fifth week recycling rate 22.5%, 5 points
+    user:,
+    challenge_event: recycling_event5
+  )
+
+  points_award5 = PointsAward.create!(
+    points: 5,
+    user:,
+    challenge_event: recycling_event5,
+    challenge: recycling_challenge
+  )
+
+  action6 = Action.create!(
+    recyclable_weight: 1.08, # sixth week recycling rate 18%, 0 points
+    user:,
+    challenge_event: recycling_event6
+  )
+
+  action7 = Action.create!(
+    recyclable_weight: 0.96, # seventh week recycling rate 16%, 0 points
+    user:,
+    challenge_event: recycling_event7
+  )
+
+  action8 = Action.create!(
+    recyclable_weight: 1.36, # eighth week recycling rate 22.6%, 5 points
+    user:,
+    challenge_event: recycling_event8
+  )
+
+  points_award8 = PointsAward.create!(
+    points: 5,
+    user:,
+    challenge_event: recycling_event8,
+    challenge: recycling_challenge
+  )
+
+  action9 = Action.create!(
+    recyclable_weight: 1.39, # ninth week recycling rate 23.2%, 5 points
+    user:,
+    challenge_event: recycling_event9
   )
   # Dont use cloudinary first, generate user without avatar
   # file = URI.open("https://thispersondoesnotexist.com/")

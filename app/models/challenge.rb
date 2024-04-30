@@ -6,6 +6,7 @@ class Challenge < ApplicationRecord
   has_many :rewards_programmes, dependent: :destroy
   has_many :locations, dependent: :destroy
   has_many :addresses, through: :locations
+  has_many :points_awards, through: :challenge_events
 
   OBJECTIVES = %w[maximize minimize]
   validates :metric_objective, inclusion: { in: OBJECTIVES }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_26_081212) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_30_042415) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -149,6 +149,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_26_081212) do
     t.index ["user_id"], name: "index_participations_on_user_id"
   end
 
+  create_table "points_awards", force: :cascade do |t|
+    t.integer "points", null: false
+    t.bigint "user_id", null: false
+    t.bigint "challenge_event_id", null: false
+    t.bigint "challenge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_event_id"], name: "index_points_awards_on_challenge_event_id"
+    t.index ["challenge_id"], name: "index_points_awards_on_challenge_id"
+    t.index ["user_id"], name: "index_points_awards_on_user_id"
+  end
+
   create_table "rewards_programmes", force: :cascade do |t|
     t.float "target", null: false
     t.integer "points", null: false
@@ -200,6 +212,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_26_081212) do
   add_foreign_key "messages", "users"
   add_foreign_key "participations", "challenges"
   add_foreign_key "participations", "users"
+  add_foreign_key "points_awards", "challenge_events"
+  add_foreign_key "points_awards", "challenges"
+  add_foreign_key "points_awards", "users"
   add_foreign_key "rewards_programmes", "challenges"
   add_foreign_key "total_points", "users"
   add_foreign_key "users", "addresses"

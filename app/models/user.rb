@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :challenges, through: :participations
   has_many :claims, dependent: :destroy
   has_many :actions, dependent: :destroy
+  has_many :points_awards, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :chatroom_members, dependent: :destroy
   has_many :chatrooms, through: :chatroom_members
