@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
+// Above two lines import all necessary registerables (tree shaking)
 
 // Connects to data-controller="metrics"
 
