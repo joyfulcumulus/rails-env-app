@@ -79,7 +79,7 @@ class ChallengesController < ApplicationController
     @recent_points_history =
       ChallengeEvent
       .joins("LEFT JOIN points_awards ON challenge_events.id = points_awards.challenge_event_id AND points_awards.user_id = #{current_user.id}")
-      .where(challenge: challenge)
+      .where(challenge:)
       .where("end_datetime < ?", Date.today.to_datetime)
       .where("end_datetime > ?", Date.today.weeks_ago(6).to_datetime)
       .order(end_datetime: :asc)
@@ -91,13 +91,13 @@ class ChallengesController < ApplicationController
   def recycled_history
     challenge = Challenge.find(params[:id])
     @recent_recycled_history =
-      Action
-      .joins(:challenge_event)
-      .where(challenge_event: { challenge: })
-      .where(user: current_user)
+      ChallengeEvent
+      .joins("LEFT JOIN actions ON challenge_events.id = actions.challenge_event_id AND actions.user_id = #{current_user.id}")
+      .where(challenge:)
       .where("end_datetime < ?", Date.today.to_datetime)
       .where("end_datetime > ?", Date.today.weeks_ago(6).to_datetime)
       .order(end_datetime: :asc)
+      .select('challenge_events.end_datetime, actions.recyclable_weight as weight')
     authorize @recent_recycled_history
     respond_to :json
   end

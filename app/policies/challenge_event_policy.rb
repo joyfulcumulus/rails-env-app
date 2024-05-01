@@ -24,7 +24,11 @@ class ChallengeEventPolicy < ApplicationPolicy
   end
 
   def points_history?
-    true
+    true # temporarily allow
+  end
+
+  def recycled_history?
+    true # temporarily allow
   end
 
   class Scope < Scope
