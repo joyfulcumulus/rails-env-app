@@ -1,0 +1,6 @@
+<% pointsdata.each do |record| %>
+  <tr>
+    <td><%= record.end_datetime.strftime('%e %b') %></td>
+    <td><%= record.points.nil? ? 0 : record.points %></td>
+  </tr>
+<% end %>

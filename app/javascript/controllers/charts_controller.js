@@ -6,7 +6,7 @@ Chart.register(...registerables);
 // Connects to data-controller="charts"
 
 export default class extends Controller {
-  static targets = ["points", "recyclables"]
+  static targets = ["points", "recyclables", "table"]
   static values = {
     challengeId: Number
   }
@@ -21,8 +21,8 @@ export default class extends Controller {
     fetch(url)
     .then(response => response.json())
     .then(data => {
-      let labels1 = Object.keys(data);
-      let data1 = Object.values(data);
+      let labels1 = Object.keys(data.chartdata);
+      let data1 = Object.values(data.chartdata);
 
       const pointsHistoryChart = new Chart(
         this.pointsTarget, // this is the canvas element where the chart will be rendered
@@ -47,6 +47,8 @@ export default class extends Controller {
           }
         }
       );
+
+      this.tableTarget.innerHTML = data.tabledata;
     });
   }
 

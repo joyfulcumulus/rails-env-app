@@ -106,10 +106,12 @@ class ChallengesController < ApplicationController
     latest_event = ChallengeEvent.where(challenge_id:).where("end_datetime < ?", Date.today.to_datetime).order(end_datetime: :desc).first
     user_estate = current_user.address.estate
     users_in_estate = User.includes(:address).where(address: { estate: user_estate })
-    total_recyclable_waste = Action.includes(:user)
-                                    .where(challenge_event: latest_event)
-                                    .where(users: { id: users_in_estate.map(&:id) })
-                                    .sum(:recyclable_weight)
+    total_recyclable_waste =
+      Action
+      .includes(:user)
+      .where(challenge_event: latest_event)
+      .where(users: { id: users_in_estate.map(&:id) })
+      .sum(:recyclable_weight)
     total_waste = users_in_estate.count * 6.0 # assume in this project, weekly waste generated is 6.0kg / user
     return total_recyclable_waste / total_waste
   end
