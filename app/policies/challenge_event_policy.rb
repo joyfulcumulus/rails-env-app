@@ -23,6 +23,10 @@ class ChallengeEventPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def points_history?
+    true
+  end
+
   class Scope < Scope
     def resolve
       scope.all
