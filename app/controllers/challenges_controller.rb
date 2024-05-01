@@ -78,9 +78,9 @@ class ChallengesController < ApplicationController
     challenge = Challenge.find(params[:id])
     @recent_points_history =
       PointsAward
-      .where(challenge:, user: current_user)
       .joins(:challenge_event)
-      .where(challenge:)
+      .where(challenge_event: { challenge: })
+      .where(user: current_user)
       .where("end_datetime < ?", Date.today.to_datetime)
       .where("end_datetime > ?", Date.today.weeks_ago(6).to_datetime)
       .order(end_datetime: :asc)
@@ -89,6 +89,17 @@ class ChallengesController < ApplicationController
   end
 
   def recycled_history
+    challenge = Challenge.find(params[:id])
+    @recent_recycled_history =
+      Action
+      .joins(:challenge_event)
+      .where(challenge_event: { challenge: })
+      .where(user: current_user)
+      .where("end_datetime < ?", Date.today.to_datetime)
+      .where("end_datetime > ?", Date.today.weeks_ago(6).to_datetime)
+      .order(end_datetime: :asc)
+    authorize @recent_recycled_history
+    respond_to :json
   end
 
   def metric_fr_actions(challenge_id)
