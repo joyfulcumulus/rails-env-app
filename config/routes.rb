@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :challenge_events
+    get "home", to: "pages#home"
     get "dashboard", to: "metrics#dashboard"
     post "award_points", to: "metrics#award_points"
   end
