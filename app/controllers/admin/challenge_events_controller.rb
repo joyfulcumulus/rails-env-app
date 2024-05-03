@@ -1,6 +1,6 @@
 class Admin::ChallengeEventsController < ApplicationController
   def index
-    @challenge_events = policy_scope(ChallengeEvent)
+    @challenge_events = policy_scope(ChallengeEvent).order(end_datetime: :asc)
     render layout: "admin_layout"
   end
 
