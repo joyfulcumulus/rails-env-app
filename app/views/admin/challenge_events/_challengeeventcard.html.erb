@@ -1,0 +1,12 @@
+<div class="challenge-event-card">
+  <%= link_to admin_challenge_event_path(event), class: "text-decoration-none" do %>
+    <p><strong>Event ID: <%= event.id %></strong></p>
+    <p>Start: <%= event.start_datetime.strftime("%e %b %Y %I:%M %p") %></p>
+    <p>End: <%= event.end_datetime.strftime("%e %b %Y %I:%M %p") %></p>
+  <% end %>
+  <%= link_to "Edit", edit_admin_challenge_event_path(event) %>
+  <%= link_to "Delete", admin_challenge_event_path(event),
+    data: {turbo_method: :delete,
+    turbo_confirm: "Are you sure? All actions by resident participants and the points awarded history associated with this event will be deleted"}
+  %>
+</div>
