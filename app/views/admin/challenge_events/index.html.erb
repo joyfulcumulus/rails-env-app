@@ -1,7 +1,21 @@
-<h1>Challenge Events Index Page</h1>
-<% @challenge_events.each do |event| %>
-  <p><%= event.id %></p>
-  <p><%= event.start_datetime %></p>
-  <p><%= event.end_datetime %></p>
-  <br>
-<% end %>
+<div class="admin-panel px-5 py-3">
+  <h1 class="mb-4">Challenge Events</h1>
+  <%= form_with url: admin_challenge_events_path, method: :get, class: "d-flex align-items-center" do %>
+    <%= label :query, "Challenge:", class: "me-3" %>
+    <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Select a challenge"
+      %>
+    <%= submit_tag "Search", class: "btn-pri-admin-blue" %>
+  <% end %>
+</div>
+
+<div class="px-5 py-3">
+  <% @challenge_events.each do |event| %>
+    <p><%= event.id %></p>
+    <p><%= event.start_datetime %></p>
+    <p><%= event.end_datetime %></p>
+    <br>
+  <% end %>
+</div>
