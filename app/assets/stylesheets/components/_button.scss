@@ -68,3 +68,21 @@
   width: 100%;
   padding: 0.6rem 1.2rem;
 }
+
+.btn-pri-admin-blue {
+  background-color: $admin-blue;
+  color: $white;
+  border-radius: 50vh;
+  padding: 0.3rem 1rem;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-sec-admin-blue {
+  background-color: $white;
+  color: $admin-blue;
+  border: 1px solid $admin-blue;
+  border-radius: 50vh;
+  padding: 0.3rem 1rem;
+  text-decoration: none;
+}

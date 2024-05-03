@@ -1,13 +1,13 @@
 class Admin::ChallengeEventsController < ApplicationController
   def index
     @challenge_events = policy_scope(ChallengeEvent)
+    render layout: "admin_layout"
   end
 
   def create
     @challenge_event = ChallengeEvent.new(params_challenge_event)
     authorize @challenge_event
-    @challenge_event.user = current_user
-    if @challenge_event.save
+    if @challenge_event.save!
       redirect_to admin_challenge_events_path
     else
       render :new, status: :unprocessable_entity
@@ -17,11 +17,13 @@ class Admin::ChallengeEventsController < ApplicationController
   def new
     @challenge_event = ChallengeEvent.new
     authorize @challenge_event
+    render layout: "admin_layout"
   end
 
   def edit
     @challenge_event = ChallengeEvent.find(params[:id])
     authorize @challenge_event
+    render layout: "admin_layout"
   end
 
   def show
@@ -54,6 +56,6 @@ class Admin::ChallengeEventsController < ApplicationController
   private
 
   def params_challenge_event
-    params.require(:challenge_event).permit(:start_datetime, :end_datetime, :challenge)
+    params.require(:challenge_event).permit(:start_datetime, :end_datetime, :challenge_id)
   end
 end
