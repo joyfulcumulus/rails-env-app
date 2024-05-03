@@ -1,1 +1,7 @@
 <h1>Challenge Events Index Page</h1>
+<% @challenge_events.each do |event| %>
+  <p><%= event.id %></p>
+  <p><%= event.start_datetime %></p>
+  <p><%= event.end_datetime %></p>
+  <br>
+<% end %>
