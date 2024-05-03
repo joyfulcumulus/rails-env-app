@@ -48,9 +48,10 @@ class Admin::ChallengeEventsController < ApplicationController
   end
 
   def destroy
-    @challenge_event = Challenge.find(params[:id])
+    @challenge_event = ChallengeEvent.find(params[:id])
     authorize @challenge_event
     @challenge_event.destroy
+    redirect_to admin_challenge_events_path
   end
 
   private
