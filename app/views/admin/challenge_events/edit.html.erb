@@ -1,7 +1,7 @@
 <h1 class="mb-4">Edit Challenge Event ID <%= @challenge_event.id %></h1>
 <%= simple_form_for [:admin, @challenge_event] do |f| %>
-  <%= f.input :start_datetime, label: 'Start Date Time' %>
-  <%= f.input :end_datetime, label: 'End Date Time' %>
+  <%= f.input :start_datetime, label: 'Start Date Time', as: :string, input_html: { data: { controller: "datetimepicker" } } %>
+  <%= f.input :end_datetime, label: 'End Date Time', as: :string, input_html: { data: { controller: "datetimepicker" } } %>
   <%= f.association :challenge, label: 'Associated Challenge' %>
   <%= f.submit "Save", class: 'btn-pri-admin-blue' %>
   <%= link_to "Back", :back, class: "btn-sec-admin-blue" %>

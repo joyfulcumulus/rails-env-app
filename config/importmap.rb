@@ -11,3 +11,4 @@ pin "@rails/actioncable", to: "@rails--actioncable.js" # @7.1.3
 
 pin "chart.js", to: "https://ga.jspm.io/npm:chart.js@4.2.0/dist/chart.js"
 pin "@kurkle/color", to: "https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.esm.js"
+pin "flatpickr" # @4.6.13
