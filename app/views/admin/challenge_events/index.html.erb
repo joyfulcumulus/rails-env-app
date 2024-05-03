@@ -4,7 +4,7 @@
     <%= label :query, "Challenge:", class: "me-3" %>
     <%= text_field_tag :query,
           params[:query],
-          class: "form-control",
+          class: "form-control me-3",
           placeholder: "Select a challenge"
       %>
     <%= submit_tag "Search", class: "btn-pri-admin-blue" %>
@@ -12,10 +12,19 @@
 </div>
 
 <div class="px-5 py-3">
-  <% @challenge_events.each do |event| %>
-    <p><%= event.id %></p>
-    <p><%= event.start_datetime %></p>
-    <p><%= event.end_datetime %></p>
-    <br>
-  <% end %>
+  <div class="mb-3 d-flex flex-row-reverse">
+    <%= link_to "+ New Challenge Event", new_admin_challenge_event_path, class: "btn-pri-admin-blue" %>
+  </div>
+
+  <div class="challenge-event-grid">
+    <% @challenge_events.each do |event| %>
+      <div>
+        <p><%= event.id %></p>
+        <p><%= event.start_datetime %></p>
+        <p><%= event.end_datetime %></p>
+        <%= link_to "Edit", edit_admin_challenge_event_path(event) %>
+        <%= link_to "Delete", "#" %>
+      </div>
+    <% end %>
+  </div>
 </div>
