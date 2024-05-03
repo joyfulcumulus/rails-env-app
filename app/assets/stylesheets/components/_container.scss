@@ -12,3 +12,13 @@
   scroll-behavior: smooth;
   flex-grow: 1;
 }
+
+.layout-container-admin {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.layout-container-admin-content {
+  display: flex;
+}
