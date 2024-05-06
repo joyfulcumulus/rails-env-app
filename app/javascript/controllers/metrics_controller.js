@@ -15,39 +15,139 @@ export default class extends Controller {
   }
 
   getParticipants() {
-    // const url = `/challenges/${this.challengeIdValue}/points_history`;
-    // fetch(url)
-    // .then(response => response.json())
-    // .then(data => {
-    //   let labels1 = Object.keys(data.chartdata);
-    //   let data1 = Object.values(data.chartdata);
+    const url = `/admin/users_per_event`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      let labels = Object.keys(data.chartdata);
+      let data = Object.values(data.chartdata);
 
-    //   const pointsHistoryChart = new Chart(
-    //     this.pointsTarget, // this is the canvas element where the chart will be rendered
-    //     {
-    //       type: 'line',
-    //       options: {
-    //         plugins: {
-    //           legend: {
-    //             display: false
-    //           }
-    //         }
-    //       },
-    //       data: {
-    //         labels: labels1,
-    //         datasets: [{
-    //           label: 'Points',
-    //           data: data1,
-    //           fill: false,
-    //           borderColor: 'rgb(75, 192, 192)',
-    //           tension: 0.1
-    //         }]
-    //       }
-    //     }
-    //   );
+      const participantsChart = new Chart(
+        this.participantsTarget, // this is the canvas element where the chart will be rendered
+        {
+          type: 'line',
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          },
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Participants',
+              data: data,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }]
+          }
+        }
+      );
+    });
+  }
 
-    //   this.tableTarget.innerHTML = data.tabledata;
-    // });
+  getRecyclingRate() {
+    const url = `/admin/recycling_rate_per_event`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      let labels = Object.keys(data.chartdata);
+      let data = Object.values(data.chartdata);
+
+      const recyclingRateChart = new Chart(
+        this.recyclingRateTarget, // this is the canvas element where the chart will be rendered
+        {
+          type: 'line',
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          },
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Rate (%)',
+              data: data,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }]
+          }
+        }
+      );
+    });
+  }
+
+  getRecyclingVol() {
+    const url = `/admin/recycling_vol_per_event`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      let labels = Object.keys(data.chartdata);
+      let data = Object.values(data.chartdata);
+
+      const volumeChart = new Chart(
+        this.volumeTarget, // this is the canvas element where the chart will be rendered
+        {
+          type: 'line',
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          },
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Vol (kg)',
+              data: data,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }]
+          }
+        }
+      );
+    });
+  }
+
+  getWasteGenerated() {
+    const url = `/admin/waste_per_event`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      let labels = Object.keys(data.chartdata);
+      let data = Object.values(data.chartdata);
+
+      const wasteChart = new Chart(
+        this.wasteTarget, // this is the canvas element where the chart will be rendered
+        {
+          type: 'line',
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          },
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Waste (kg)',
+              data: data,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }]
+          }
+        }
+      );
+    });
   }
 
   awardPoints(event) {

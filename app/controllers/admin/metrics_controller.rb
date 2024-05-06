@@ -1,8 +1,19 @@
 class Admin::MetricsController < ApplicationController
-
   def dashboard
     authorize :metric, :dashboard? # headless metric policy, retrieve dashboard? method
     render layout: "admin_layout"
+  end
+
+  def users_per_event
+  end
+
+  def recycling_rate_per_event
+  end
+
+  def recycling_vol_per_event
+  end
+
+  def waste_per_event
   end
 
   def award_points
