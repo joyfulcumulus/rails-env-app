@@ -4,38 +4,51 @@ Chart.register(...registerables);
 // Above two lines import all necessary registerables (tree shaking)
 
 // Connects to data-controller="metrics"
-
-const worldPopulation = {
-  "men": 30,
-  "women": 70
-};
-
 export default class extends Controller {
-  static targets = ["donut"];
+  static targets = ["participants", "recyclingRate", "volume", "waste"];
 
   connect() {
-    console.log("hello metrics controller");
-    const labels = Object.keys(worldPopulation);
-    const data = Object.values(worldPopulation);
-
-    const chart = new Chart(this.donutTarget, { // use "this.chart" to make it instance var
-      type: 'doughnut',
-      data: {
-        labels,
-        datasets: [{
-          label: 'Gender Ratio',
-          data,
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-          ],
-          hoverOffset: 4
-        }]
-      }
-    });
+    this.getParticipants();
+    this.getRecyclingRate();
+    this.getRecyclingVol();
+    this.getWasteGenerated();
   }
 
+  getParticipants() {
+    // const url = `/challenges/${this.challengeIdValue}/points_history`;
+    // fetch(url)
+    // .then(response => response.json())
+    // .then(data => {
+    //   let labels1 = Object.keys(data.chartdata);
+    //   let data1 = Object.values(data.chartdata);
+
+    //   const pointsHistoryChart = new Chart(
+    //     this.pointsTarget, // this is the canvas element where the chart will be rendered
+    //     {
+    //       type: 'line',
+    //       options: {
+    //         plugins: {
+    //           legend: {
+    //             display: false
+    //           }
+    //         }
+    //       },
+    //       data: {
+    //         labels: labels1,
+    //         datasets: [{
+    //           label: 'Points',
+    //           data: data1,
+    //           fill: false,
+    //           borderColor: 'rgb(75, 192, 192)',
+    //           tension: 0.1
+    //         }]
+    //       }
+    //     }
+    //   );
+
+    //   this.tableTarget.innerHTML = data.tabledata;
+    // });
+  }
 
   awardPoints(event) {
     event.preventDefault();

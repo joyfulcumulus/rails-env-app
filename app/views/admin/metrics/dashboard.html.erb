@@ -17,20 +17,33 @@
   <% end %>
 </div>
 
-<div data-controller="metrics">
-  <h1>Your Progress</h1>
+<div data-controller="metrics" class="metrics-grid px-5 py-3">
 
-  <div>
-    <h2>Points Collected</h2>
-    <div class="chart">
-      <canvas></canvas>
+  <div class="mb-4">
+    <h2 class="fs-5">Challenge Participants</h2>
+    <div class="mb-4">
+      <canvas data-charts-target="participants"></canvas>
     </div>
   </div>
 
-  <div>
-    <h2>Waste Recycled</h2>
-    <div class="chart">
-      <canvas data-metrics-target="donut"></canvas>
+  <div class="mb-4">
+    <h2 class="fs-5">Recycling Rate (A/B)</h2>
+    <div class="mb-4">
+      <canvas data-charts-target="recyclingRate"></canvas>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <h2 class="fs-5">Recycling Volume (A)</h2>
+    <div class="mb-4">
+      <canvas data-charts-target="volume"></canvas>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <h2 class="fs-5">Waste Generated (B)</h2>
+    <div class="mb-4">
+      <canvas data-charts-target="waste"></canvas>
     </div>
   </div>
 
