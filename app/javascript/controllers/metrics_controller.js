@@ -8,10 +8,22 @@ export default class extends Controller {
   static targets = ["participants", "recyclingRate", "volume", "waste"];
 
   connect() {
-    this.getParticipants();
-    this.getRecyclingRate();
-    this.getRecyclingVol();
-    this.getWasteGenerated();
+    // fetch params from URL (if any)
+    const params = new URL(document.location.toString()).searchParams;
+    const challengeId = params.get("challenge_id");
+    const estateId = params.get("estate_id");
+    const startDate = params.get("start_date");
+    const endDate = params.get("end_date");
+
+    if (challengeId == "" || estateId == "" || startDate == "" || endDate == "" || challengeId == null || estateId == null || startDate == null || endDate == null) {
+      console.log("do nothing");
+    } else {
+      // compute metrics if params have been given by admin user
+      // this.getParticipants();
+      // this.getRecyclingRate();
+      // this.getRecyclingVol();
+      // this.getWasteGenerated();
+    };
   }
 
   getParticipants() {
@@ -19,32 +31,33 @@ export default class extends Controller {
     fetch(url)
     .then(response => response.json())
     .then(data => {
-      let labels = Object.keys(data.chartdata);
-      let data = Object.values(data.chartdata);
+      console.log(data);
+      // let labels1 = Object.keys(data.chartdata);
+      // let data1 = Object.values(data.chartdata);
 
-      const participantsChart = new Chart(
-        this.participantsTarget, // this is the canvas element where the chart will be rendered
-        {
-          type: 'line',
-          options: {
-            plugins: {
-              legend: {
-                display: false
-              }
-            }
-          },
-          data: {
-            labels: labels,
-            datasets: [{
-              label: 'Participants',
-              data: data,
-              fill: false,
-              borderColor: 'rgb(75, 192, 192)',
-              tension: 0.1
-            }]
-          }
-        }
-      );
+      // const participantsChart = new Chart(
+      //   this.participantsTarget, // this is the canvas element where the chart will be rendered
+      //   {
+      //     type: 'line',
+      //     options: {
+      //       plugins: {
+      //         legend: {
+      //           display: false
+      //         }
+      //       }
+      //     },
+      //     data: {
+      //       labels: labels1,
+      //       datasets: [{
+      //         label: 'Participants',
+      //         data: data1,
+      //         fill: false,
+      //         borderColor: 'rgb(75, 192, 192)',
+      //         tension: 0.1
+      //       }]
+      //     }
+      //   }
+      // );
     });
   }
 
@@ -53,8 +66,8 @@ export default class extends Controller {
     fetch(url)
     .then(response => response.json())
     .then(data => {
-      let labels = Object.keys(data.chartdata);
-      let data = Object.values(data.chartdata);
+      let labels2 = Object.keys(data.chartdata);
+      let data2 = Object.values(data.chartdata);
 
       const recyclingRateChart = new Chart(
         this.recyclingRateTarget, // this is the canvas element where the chart will be rendered
@@ -68,10 +81,10 @@ export default class extends Controller {
             }
           },
           data: {
-            labels: labels,
+            labels: labels2,
             datasets: [{
               label: 'Rate (%)',
-              data: data,
+              data: data2,
               fill: false,
               borderColor: 'rgb(75, 192, 192)',
               tension: 0.1
@@ -87,8 +100,8 @@ export default class extends Controller {
     fetch(url)
     .then(response => response.json())
     .then(data => {
-      let labels = Object.keys(data.chartdata);
-      let data = Object.values(data.chartdata);
+      let labels3 = Object.keys(data.chartdata);
+      let data3 = Object.values(data.chartdata);
 
       const volumeChart = new Chart(
         this.volumeTarget, // this is the canvas element where the chart will be rendered
@@ -102,10 +115,10 @@ export default class extends Controller {
             }
           },
           data: {
-            labels: labels,
+            labels: labels3,
             datasets: [{
               label: 'Vol (kg)',
-              data: data,
+              data: data3,
               fill: false,
               borderColor: 'rgb(75, 192, 192)',
               tension: 0.1
@@ -121,8 +134,8 @@ export default class extends Controller {
     fetch(url)
     .then(response => response.json())
     .then(data => {
-      let labels = Object.keys(data.chartdata);
-      let data = Object.values(data.chartdata);
+      let labels4 = Object.keys(data.chartdata);
+      let data4 = Object.values(data.chartdata);
 
       const wasteChart = new Chart(
         this.wasteTarget, // this is the canvas element where the chart will be rendered
@@ -136,10 +149,10 @@ export default class extends Controller {
             }
           },
           data: {
-            labels: labels,
+            labels: labels4,
             datasets: [{
               label: 'Waste (kg)',
-              data: data,
+              data: data4,
               fill: false,
               borderColor: 'rgb(75, 192, 192)',
               tension: 0.1
