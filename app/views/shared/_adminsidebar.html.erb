@@ -1,16 +1,16 @@
 <div class="sidebar border-end border-secondary-subtle">
   <ul>
     <li>
-      <%= link_to "Admin Home", admin_home_path %>
+      <%= link_to "Admin Home", admin_home_path, class: request.original_url.include?("admin/home") ? "active" : "" %>
     </li>
     <li>
-      <%= link_to "Challenges", "#" %>
+      <%= link_to "Challenges", "#", class: request.original_url.include?("admin/challenges") ? "active" : "" %>
     </li>
     <li>
-      <%= link_to "Challenge Events", admin_challenge_events_path %>
+      <%= link_to "Challenge Events", admin_challenge_events_path, class: request.original_url.include?("admin/challenge_events") ? "active" : "" %>
     </li>
     <li>
-      <%= link_to "Metrics Dashboard", admin_dashboard_path %>
+      <%= link_to "Metrics Dashboard", admin_dashboard_path, class: request.original_url.include?("admin/dashboard") ? "active" : "" %>
     </li>
   </ul>
 </div>
