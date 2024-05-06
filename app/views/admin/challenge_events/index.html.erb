@@ -1,13 +1,9 @@
 <div class="admin-panel px-5 py-3">
   <h1 class="mb-4">Challenge Events</h1>
-  <%= form_with url: admin_challenge_events_path, method: :get, class: "d-flex align-items-center" do %>
-    <%= label :query, "Challenge:", class: "me-3" %>
-    <%= text_field_tag :query,
-          params[:query],
-          class: "form-control me-3",
-          placeholder: "Select a challenge"
-      %>
-    <%= submit_tag "Search", class: "btn-pri-admin-blue" %>
+  <%= form_with url: admin_challenge_events_path, method: :get, class: "d-flex align-items-center" do |form| %>
+    <%= form.label :challenge_id, "Filter by Challenge:", class: "me-3" %>
+    <%= form.select :challenge_id, Challenge.order(:name).map { |challenge| [challenge.name, challenge.id] }, { selected: params[:challenge_id] }, { class: "form-select me-3" } %>
+    <%= form.submit "Filter", class: "btn-pri-admin-blue" %>
   <% end %>
 </div>
 
@@ -16,9 +12,25 @@
     <%= link_to "+ New Challenge Event", new_admin_challenge_event_path, class: "btn-pri-admin-blue" %>
   </div>
 
+  <% if @challenge_events.count == 0 && params[:challenge_id].present? == false %>
+
+  <div>
+    <p>Select a challenge to filter its challenge events.</p>
+  </div>
+
+  <% elsif @challenge_events.count == 0 && params[:challenge_id].present? %>
+
+  <div>
+    <p>No challenge events for selected challenge.</p>
+  </div>
+
+  <% else %>
+
   <div class="challenge-event-grid">
     <% @challenge_events.each do |event| %>
       <%= render "challengeeventcard", event: event %>
     <% end %>
   </div>
+
+  <% end %>
 </div>

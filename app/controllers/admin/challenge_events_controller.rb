@@ -1,6 +1,10 @@
 class Admin::ChallengeEventsController < ApplicationController
   def index
-    @challenge_events = policy_scope(ChallengeEvent).order(end_datetime: :asc)
+    @challenge_events = []
+    if params[:challenge_id].present?
+      @challenge = Challenge.find(params[:challenge_id])
+      @challenge_events = policy_scope(ChallengeEvent).where(challenge: @challenge).order(end_datetime: :asc)
+    end
     render layout: "admin_layout"
   end
 
