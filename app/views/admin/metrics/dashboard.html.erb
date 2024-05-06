@@ -7,10 +7,10 @@
       <%= form.label :estate_id, "Estate:", class: "me-3" %>
       <%= form.select :estate_id, Estate.order(:name).map { |estate| [estate.name, estate.id] }, { selected: params[:estate_id] }, { class: "form-select me-3" } %>
       <%= form.label :start_date, "Date Range:", class: "me-3" %>
-      <div>
-        <%= form.date_field :start_date, as: :string, input_html: { data: { controller: "datetimepicker" } } %>
+      <div class="d-flex align-items-center">
+        <%= form.date_field :start_date, as: :string, class: "form-control", input_html: { data: { controller: "datetimepicker" } } %>
         <%= form.label :end_date, "to", class: "mx-2" %>
-        <%= form.date_field :end_date, as: :string, input_html: { data: { controller: "datetimepicker" } } %>
+        <%= form.date_field :end_date, as: :string, class: "form-control", input_html: { data: { controller: "datetimepicker" } } %>
       </div>
     </div>
     <%= form.submit "Search", class: "btn-pri-admin-blue" %>
