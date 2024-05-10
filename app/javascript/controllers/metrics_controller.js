@@ -21,9 +21,9 @@ export default class extends Controller {
       console.log("do nothing");
     } else {
       // this.getParticipants();
-      // this.getRecyclingRate();
-      // this.getRecyclingVol();
+      this.getRecyclingVol();
       this.getWasteGenerated();
+      // this.getRecyclingRate();
     };
   }
 
@@ -97,12 +97,12 @@ export default class extends Controller {
   }
 
   getRecyclingVol() {
-    const url = `/admin/recycling_vol_per_event`;
+    const url = `/admin/recycling_vol_per_event?challengeId=${JSON.stringify(this.challengeId)}&estateId=${JSON.stringify(this.estateId)}&startDate=${JSON.stringify(this.startDate)}&endDate=${JSON.stringify(this.endDate)}`;
     fetch(url)
     .then(response => response.json())
     .then(data => {
-      let labels3 = Object.keys(data.chartdata);
-      let data3 = Object.values(data.chartdata);
+      let labels3 = Object.keys(data);
+      let data3 = Object.values(data);
 
       const volumeChart = new Chart(
         this.volumeTarget, // this is the canvas element where the chart will be rendered

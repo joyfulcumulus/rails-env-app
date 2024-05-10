@@ -26,11 +26,28 @@ class Admin::MetricsController < ApplicationController
   end
 
   def recycling_vol_per_event
+    challenge_id = JSON.parse(params[:challengeId])
+    estate_id = JSON.parse(params[:estateId])
+    start_date = JSON.parse(params[:startDate])
+    end_date = JSON.parse(params[:endDate])
+
+    @users_in_estate = User.includes(:address).where(address: { estate: Estate.find(estate_id) }).map(&:id)
+
+    @recycling_vol_in_range =
+      ChallengeEvent
+      .joins("LEFT JOIN actions ON challenge_events.id = actions.challenge_event_id AND actions.user_id IN (#{@users_in_estate.join(",")})")
+      .where(challenge: Challenge.find(challenge_id))
+      .where("end_datetime < ?", Date.parse(end_date))
+      .where("end_datetime > ?", Date.parse(start_date))
+      .order(end_datetime: :asc)
+      .group(:end_datetime)
+      .select('challenge_events.end_datetime, ( SUM(actions.recyclable_weight) / COUNT(DISTINCT actions.user_id) ) as averagevol')
+    authorize @recycling_vol_in_range
+    respond_to :json
   end
 
   def waste_per_event
     challenge_id = JSON.parse(params[:challengeId])
-    estate_id = JSON.parse(params[:estateId])
     start_date = JSON.parse(params[:startDate])
     end_date = JSON.parse(params[:endDate])
 
@@ -42,8 +59,6 @@ class Admin::MetricsController < ApplicationController
       .order(end_datetime: :asc)
       .select(:end_datetime)
     authorize @events_in_range
-
-    @num_residents_in_estate = User.includes(:address).where(address: { estate: Estate.find(estate_id) }).count
 
     respond_to :json
   end
