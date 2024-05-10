@@ -4,22 +4,25 @@ class Admin::MetricsController < ApplicationController
     render layout: "admin_layout"
   end
 
-  def users_per_event
-  #   challenge_events_in_range =
-  #   ChallengeEvent
-  #   .where(challenge:)
-  #   .where("end_datetime < ?", )
-  #   .where("end_datetime > ?", )
-  #   .order(end_datetime: :asc)
+  def participants_per_event
+    challenge_id = JSON.parse(params[:challengeId])
+    estate_id = JSON.parse(params[:estateId])
+    start_date = JSON.parse(params[:startDate])
+    end_date = JSON.parse(params[:endDate])
 
-  # @num_participants =
-  #   Action
-  #   .includes(:user)
-  #   .where(challenge_event: latest_event)
-  #   .where(users: { id: users_in_estate.map(&:id) })
-  #   .sum(:recyclable_weight)
-  #   authorize @num_participants
-  #   respond_to :json
+    @users_in_estate = User.includes(:address).where(address: { estate: Estate.find(estate_id) }).map(&:id)
+
+    @participants_in_range =
+      ChallengeEvent
+      .joins("LEFT JOIN actions ON challenge_events.id = actions.challenge_event_id AND actions.user_id IN (#{@users_in_estate.join(",")})")
+      .where(challenge: Challenge.find(challenge_id))
+      .where("end_datetime < ?", Date.parse(end_date))
+      .where("end_datetime > ?", Date.parse(start_date))
+      .order(end_datetime: :asc)
+      .group(:end_datetime)
+      .select('challenge_events.end_datetime, COUNT(DISTINCT actions.user_id) as participants')
+    authorize @participants_in_range
+    respond_to :json
   end
 
   def recycling_rate_per_event

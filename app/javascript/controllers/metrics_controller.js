@@ -20,7 +20,7 @@ export default class extends Controller {
     if ([this.challengeId, this.estateId, this.startDate, this.endDate].some(isEmptyOrNull)) {
       console.log("do nothing");
     } else {
-      // this.getParticipants();
+      this.getParticipants();
       this.getRecyclingVol();
       this.getWasteGenerated();
       // this.getRecyclingRate();
@@ -28,50 +28,15 @@ export default class extends Controller {
   }
 
   getParticipants() {
-    const url = `/admin/users_per_event?challengeId=${JSON.stringify(challengeId)}&estateId=${JSON.stringify(estateId)}&startDate=${JSON.stringify(startDate)}&endDate=${JSON.stringify(endDate)}`;
+    const url = `/admin/participants_per_event?challengeId=${JSON.stringify(this.challengeId)}&estateId=${JSON.stringify(this.estateId)}&startDate=${JSON.stringify(this.startDate)}&endDate=${JSON.stringify(this.endDate)}`;
     fetch(url)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-      // let labels1 = Object.keys(data.chartdata);
-      // let data1 = Object.values(data.chartdata);
+      let labels1 = Object.keys(data);
+      let data1 = Object.values(data);
 
-      // const participantsChart = new Chart(
-      //   this.participantsTarget, // this is the canvas element where the chart will be rendered
-      //   {
-      //     type: 'line',
-      //     options: {
-      //       plugins: {
-      //         legend: {
-      //           display: false
-      //         }
-      //       }
-      //     },
-      //     data: {
-      //       labels: labels1,
-      //       datasets: [{
-      //         label: 'Participants',
-      //         data: data1,
-      //         fill: false,
-      //         borderColor: 'rgb(75, 192, 192)',
-      //         tension: 0.1
-      //       }]
-      //     }
-      //   }
-      // );
-    });
-  }
-
-  getRecyclingRate() {
-    const url = `/admin/recycling_rate_per_event`;
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      let labels2 = Object.keys(data.chartdata);
-      let data2 = Object.values(data.chartdata);
-
-      const recyclingRateChart = new Chart(
-        this.recyclingRateTarget, // this is the canvas element where the chart will be rendered
+      const participantsChart = new Chart(
+        this.participantsTarget, // this is the canvas element where the chart will be rendered
         {
           type: 'line',
           options: {
@@ -82,10 +47,10 @@ export default class extends Controller {
             }
           },
           data: {
-            labels: labels2,
+            labels: labels1,
             datasets: [{
-              label: 'Rate (%)',
-              data: data2,
+              label: 'Participants',
+              data: data1,
               fill: false,
               borderColor: 'rgb(75, 192, 192)',
               tension: 0.1
@@ -154,6 +119,40 @@ export default class extends Controller {
             datasets: [{
               label: 'Waste (kg)',
               data: data4,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }]
+          }
+        }
+      );
+    });
+  }
+
+  getRecyclingRate() {
+    const url = `/admin/recycling_rate_per_event`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      let labels2 = Object.keys(data.chartdata);
+      let data2 = Object.values(data.chartdata);
+
+      const recyclingRateChart = new Chart(
+        this.recyclingRateTarget, // this is the canvas element where the chart will be rendered
+        {
+          type: 'line',
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          },
+          data: {
+            labels: labels2,
+            datasets: [{
+              label: 'Rate (%)',
+              data: data2,
               fill: false,
               borderColor: 'rgb(75, 192, 192)',
               tension: 0.1

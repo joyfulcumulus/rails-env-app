@@ -31,6 +31,10 @@ class ChallengeEventPolicy < ApplicationPolicy
     true # temporarily allow
   end
 
+  def participants_per_event?
+    true # temporarily allow
+  end
+
   def waste_per_event?
     true # temporarily allow
   end

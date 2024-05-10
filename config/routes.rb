@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :challenge_events
     get "home", to: "pages#home"
     get "dashboard", to: "metrics#dashboard"
-    get "users_per_event", to: "metrics#users_per_event"
+    get "participants_per_event", to: "metrics#participants_per_event"
     get "recycling_rate_per_event", to: "metrics#recycling_rate_per_event"
     get "recycling_vol_per_event", to: "metrics#recycling_vol_per_event"
     get "waste_per_event", to: "metrics#waste_per_event"
