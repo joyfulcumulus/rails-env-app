@@ -43,6 +43,10 @@ class ChallengeEventPolicy < ApplicationPolicy
     true # temporarily allow
   end
 
+  def recycling_rate_per_event?
+    true # temporarily allow
+  end
+
   class Scope < Scope
     def resolve
       if user.admin?
