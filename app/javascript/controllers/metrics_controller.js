@@ -10,24 +10,25 @@ export default class extends Controller {
   connect() {
     // fetch params from URL (if any)
     const params = new URL(document.location.toString()).searchParams;
-    const challengeId = params.get("challenge_id");
-    const estateId = params.get("estate_id");
-    const startDate = params.get("start_date");
-    const endDate = params.get("end_date");
+    this.challengeId = params.get("challenge_id");
+    this.estateId = params.get("estate_id");
+    this.startDate = params.get("start_date");
+    this.endDate = params.get("end_date");
 
-    if (challengeId == "" || estateId == "" || startDate == "" || endDate == "" || challengeId == null || estateId == null || startDate == null || endDate == null) {
+    // check if params have been given by admin user
+    const isEmptyOrNull = (value) => value === "" || value === null;
+    if ([this.challengeId, this.estateId, this.startDate, this.endDate].some(isEmptyOrNull)) {
       console.log("do nothing");
     } else {
-      // compute metrics if params have been given by admin user
       // this.getParticipants();
       // this.getRecyclingRate();
       // this.getRecyclingVol();
-      // this.getWasteGenerated();
+      this.getWasteGenerated();
     };
   }
 
   getParticipants() {
-    const url = `/admin/users_per_event`;
+    const url = `/admin/users_per_event?challengeId=${JSON.stringify(challengeId)}&estateId=${JSON.stringify(estateId)}&startDate=${JSON.stringify(startDate)}&endDate=${JSON.stringify(endDate)}`;
     fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -130,12 +131,12 @@ export default class extends Controller {
   }
 
   getWasteGenerated() {
-    const url = `/admin/waste_per_event`;
+    const url = `/admin/waste_per_event?challengeId=${JSON.stringify(this.challengeId)}&estateId=${JSON.stringify(this.estateId)}&startDate=${JSON.stringify(this.startDate)}&endDate=${JSON.stringify(this.endDate)}`;
     fetch(url)
     .then(response => response.json())
     .then(data => {
-      let labels4 = Object.keys(data.chartdata);
-      let data4 = Object.values(data.chartdata);
+      let labels4 = Object.keys(data);
+      let data4 = Object.values(data);
 
       const wasteChart = new Chart(
         this.wasteTarget, // this is the canvas element where the chart will be rendered
