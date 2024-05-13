@@ -1,0 +1,32 @@
+<div class="admin-panel px-5 py-3">
+  <h1 class="mb-4">Challenges</h1>
+</div>
+
+<div class="px-5 py-3">
+  <div class="mb-3 d-flex flex-row-reverse">
+    <%= link_to "+ New Challenge", new_admin_challenge_path, class: "btn-pri-admin-blue" %>
+  </div>
+
+  <% if @challenges.count == 0 %>
+
+  <div>
+    <p>No challenges</p>
+  </div>
+
+  <% else %>
+
+  <div>
+    <% @challenges.each do |challenge| %>
+      <p><%= challenge.name %></p>
+      <p><%= challenge.description %></p>
+      <%= link_to "Details", admin_challenge_path(challenge) %>
+      <%= link_to "Edit", edit_admin_challenge_path(challenge) %>
+      <%= link_to "Delete", admin_challenge_path(challenge),
+        data: {turbo_method: :delete,
+        turbo_confirm: "Are you sure? All challenge events, resident actions and points awarded will be deleted."}
+      %>
+    <% end %>
+  </div>
+
+  <% end %>
+</div>

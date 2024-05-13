@@ -20,40 +20,6 @@ class ChallengesController < ApplicationController
     render layout: "challenge_layout"
   end
 
-  def new
-    @challenge = Challenge.new
-    authorize @challenge
-  end
-
-  def create
-    @challenge = Challenge.new(params_challenge)
-    authorize @challenge
-    @challenge.user = current_user
-    if @challenge.save
-      redirect_to challenges_path
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
-
-  def edit
-    @challenge = Challenge.find(params[:id])
-    authorize @challenge
-  end
-
-  def update
-    @challenge = Challenge.find(params[:id])
-    authorize @challenge
-    @challenge.update(params_challenge)
-    redirect_to challenge_path(@challenge)
-  end
-
-  def destroy
-    @challenge = Challenge.find(params[:id])
-    authorize @challenge
-    @challenge.destroy
-  end
-
   def join
     @user = current_user
     @challenge = Challenge.find(params[:id])
@@ -116,11 +82,5 @@ class ChallengesController < ApplicationController
     return total_recyclable_waste / total_waste
   end
   helper_method :metric_fr_actions
-
-  private
-
-  def params_challenge
-    params.require(:challenge).permit(:name, :description, :participant_criteria, :start_date, :end_date, :cover [])
-  end
 
 end

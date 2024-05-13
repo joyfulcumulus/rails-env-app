@@ -1,0 +1,15 @@
+<div class="px-5 py-3">
+  <h1 class="mb-4">Edit Challenge ID <%= @challenge.id %></h1>
+  <%= simple_form_for [:admin, @challenge] do |f| %>
+    <%= f.input :name, label: 'Name of Challenge' %>
+    <%= f.input :description, label: 'Description of Challenge' %>
+    <%= f.input :start_date, label: 'Start Date', as: :string, input_html: { data: { controller: "datetimepicker" } } %>
+    <%= f.input :end_date, label: 'End Date', as: :string, input_html: { data: { controller: "datetimepicker" } } %>
+    <%= f.input :participant_criteria, label: 'Participation Criteria' %>
+    <%= f.input :metric_name, label: 'Metric Name' %>
+    <%= f.input :metric_objective, label: 'Metric Objective' %>
+    <%= f.input :metric_unit, label: 'Metric Unit' %>
+    <%= f.submit "Save", class: 'btn-pri-admin-blue' %>
+    <%= link_to "Back", :back, class: "btn-sec-admin-blue" %>
+  <% end %>
+</div>

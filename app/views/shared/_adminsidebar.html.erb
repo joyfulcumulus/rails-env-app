@@ -4,7 +4,7 @@
       <%= link_to "Admin Home", admin_home_path, class: request.original_url.include?("admin/home") ? "active" : "" %>
     </li>
     <li>
-      <%= link_to "Challenges", "#", class: request.original_url.include?("admin/challenges") ? "active" : "" %>
+      <%= link_to "Challenges", admin_challenges_path, class: request.original_url.include?("admin/challenges") ? "active" : "" %>
     </li>
     <li>
       <%= link_to "Challenge Events", admin_challenge_events_path, class: request.original_url.include?("admin/challenge_events") ? "active" : "" %>

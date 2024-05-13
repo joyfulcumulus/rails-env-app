@@ -4,23 +4,23 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def new?
-    record.user.admin == true
+    user.admin == true
   end
 
   def create?
-    record.user.admin == true
+    user.admin == true
   end
 
   def edit?
-    record.user.admin == true
+    user.admin == true
   end
 
   def update?
-    record.user.admin == true
+    user.admin == true
   end
 
   def destroy?
-    record.user.admin == true
+    user.admin == true
   end
 
   class Scope < Scope
