@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "pages#home"
 
-  resources :challenges do
+  resources :challenges, only: %i[index show] do
     member do
       get 'locations'
       get 'points_history'
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :challenges
     resources :challenge_events
     get "home", to: "pages#home"
     get "dashboard", to: "metrics#dashboard"
