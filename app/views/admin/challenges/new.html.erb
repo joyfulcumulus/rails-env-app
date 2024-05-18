@@ -7,7 +7,7 @@
     <%= f.input :end_date, label: 'End Date', as: :string, input_html: { data: { controller: "datetimepicker" } } %>
     <%= f.input :participant_criteria, label: 'Participation Criteria' %>
     <%= f.input :metric_name, label: 'Metric Name' %>
-    <%= f.input :metric_objective, label: 'Metric Objective' %>
+    <%= f.input :metric_objective, collection: ['maximize', 'minimize'], label: 'Metric Objective' %>
     <%= f.input :metric_unit, label: 'Metric Unit' %>
     <%= f.input :cover, label: 'Cover Image', as: :file %>
     <%= f.submit "Create", class: 'btn-pri-admin-blue' %>
