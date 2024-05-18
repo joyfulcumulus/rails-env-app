@@ -42,6 +42,7 @@ class Admin::ChallengeEventsController < ApplicationController
       standalone: true,
       module_size: 8
     )
+    render layout: "admin_layout"
   end
 
   def update
