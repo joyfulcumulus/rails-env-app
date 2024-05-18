@@ -1,19 +1,19 @@
-<h1>Challenge Show Page (Admin)</h1>
+<div class="px-5 py-3">
+  <p>This is a preview of the content to be shown in the One Service App.</p>
+  <%= link_to "Edit Content", edit_admin_challenge_path(@challenge), class: "btn-sec-admin-blue d-inline-block mb-3"  %>
+  <%= link_to "Back", admin_challenges_path, class: "btn-sec-admin-blue d-inline-block mb-3" %>
 
-<div class="cover-image-container">
-  <% if @challenge.cover.attached? %>
-    <%= cl_image_tag @challenge.cover.key, class: "", alt: "challenge cover image"%>
-  <% else %>
-    <%= image_tag "challenge.PNG", class: "", alt: "default challenge cover image"%>
-  <% end %>
-</div>
-
-<div>
-  <div class="px-3 pt-3">
-    <h1 class="fs-2 mb-3"><%= @challenge.name %></h1>
+  <div class="cover-image-container">
+    <% if @challenge.cover.attached? %>
+      <%= cl_image_tag @challenge.cover.key, class: "", alt: "challenge cover image"%>
+    <% else %>
+      <%= image_tag "challenge.PNG", class: "", alt: "default challenge cover image"%>
+    <% end %>
   </div>
 
-  <div class="p-3">
+  <div class="my-3">
+    <h1 class="fs-2 mb-3"><%= @challenge.name %></h1>
+
     <h2 class="fs-5">What</h2>
     <p class="mb-4"><%= @challenge.description %></p>
 
@@ -24,7 +24,7 @@
     <p class="mb-4"><%= @challenge.participant_criteria %></p>
 
     <h2 class="fs-5">Rewards structure</h2>
-    <p class="mb-1">Points are given based on the <%= @challenge.metric_name %> attained by the estate:</p>
+    <p class="mb-3">Points are given based on the <%= @challenge.metric_name %> attained by the estate:</p>
     <table class="table" >
       <thead class="table-light">
         <tr>
@@ -41,6 +41,5 @@
       <% end %>
       </tbody>
     </table>
-
   </div>
 </div>
