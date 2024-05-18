@@ -2,7 +2,7 @@
   <h1 class="mb-4">New Challenge</h1>
   <%= simple_form_for [:admin, @challenge] do |f| %>
     <%= f.input :name, label: 'Name of Challenge' %>
-    <%= f.input :description, label: 'Description of Challenge' %>
+    <%= f.input :description, label: 'Description of Challenge', as: :text %>
     <%= f.input :start_date, label: 'Start Date', as: :string, input_html: { data: { controller: "datetimepicker" } } %>
     <%= f.input :end_date, label: 'End Date', as: :string, input_html: { data: { controller: "datetimepicker" } } %>
     <%= f.input :participant_criteria, label: 'Participation Criteria' %>
