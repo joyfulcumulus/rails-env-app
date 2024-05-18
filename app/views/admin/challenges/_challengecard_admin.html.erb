@@ -1,0 +1,12 @@
+<div class="admin-card">
+  <%= link_to admin_challenge_path(challenge), class: "text-decoration-none" do %>
+    <p><strong>Challenge ID: <%= challenge.id %></strong></p>
+    <p><strong><%= challenge.name %></strong></p>
+    <p>Duration: <%= challenge.start_date.strftime("%e %b %Y %I:%M %p") %> to <%= challenge.end_date.strftime("%e %b %Y %I:%M %p") %></p>
+  <% end %>
+    <%= link_to "Edit", edit_admin_challenge_path(challenge) %>
+    <%= link_to "Delete", admin_challenge_path(challenge),
+      data: {turbo_method: :delete,
+      turbo_confirm: "Are you sure? All challenge events, resident actions and points awarded will be deleted."}
+    %>
+</div>

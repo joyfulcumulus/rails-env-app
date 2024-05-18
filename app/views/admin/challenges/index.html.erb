@@ -15,16 +15,9 @@
 
   <% else %>
 
-  <div>
+  <div class="admin-card-grid">
     <% @challenges.each do |challenge| %>
-      <p><%= challenge.name %></p>
-      <p><%= challenge.description %></p>
-      <%= link_to "Details", admin_challenge_path(challenge) %>
-      <%= link_to "Edit", edit_admin_challenge_path(challenge) %>
-      <%= link_to "Delete", admin_challenge_path(challenge),
-        data: {turbo_method: :delete,
-        turbo_confirm: "Are you sure? All challenge events, resident actions and points awarded will be deleted."}
-      %>
+      <%= render "challengecard_admin", challenge: challenge %>
     <% end %>
   </div>
 
