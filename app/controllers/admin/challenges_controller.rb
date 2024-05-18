@@ -20,7 +20,7 @@ class Admin::ChallengesController < ApplicationController
     @challenge = Challenge.new(params_challenge)
     authorize @challenge
     if @challenge.save
-      redirect_to challenges_path
+      redirect_to admin_challenges_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,6 +43,7 @@ class Admin::ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
     authorize @challenge
     @challenge.destroy
+    redirect_to admin_challenges_path
   end
 
   private
