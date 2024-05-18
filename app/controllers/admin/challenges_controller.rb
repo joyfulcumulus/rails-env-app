@@ -36,7 +36,7 @@ class Admin::ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
     authorize @challenge
     @challenge.update(params_challenge)
-    redirect_to challenge_path(@challenge)
+    redirect_to admin_challenges_path
   end
 
   def destroy
@@ -48,6 +48,11 @@ class Admin::ChallengesController < ApplicationController
   private
 
   def params_challenge
-    params.require(:challenge).permit(:name, :description, :participant_criteria, :start_date, :end_date, :cover [])
+    params.require(:challenge).permit(
+      :name, :description, :participant_criteria,
+      :start_date, :end_date,
+      :metric_name, :metric_objective, :metric_unit,
+      :cover
+    )
   end
 end

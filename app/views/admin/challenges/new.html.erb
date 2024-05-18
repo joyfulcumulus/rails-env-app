@@ -9,6 +9,7 @@
     <%= f.input :metric_name, label: 'Metric Name' %>
     <%= f.input :metric_objective, label: 'Metric Objective' %>
     <%= f.input :metric_unit, label: 'Metric Unit' %>
+    <%= f.input :cover, label: 'Cover Image', as: :file %>
     <%= f.submit "Create", class: 'btn-pri-admin-blue' %>
     <%= link_to "Back", :back, class: "btn-sec-admin-blue" %>
   <% end %>
