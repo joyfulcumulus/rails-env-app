@@ -24,7 +24,12 @@
     <p class="mb-4"><%= @challenge.participant_criteria %></p>
 
     <h2 class="fs-5">Rewards structure</h2>
-    <p class="mb-3">Points are given based on the <%= @challenge.metric_name %> attained by the estate:</p>
+    <% if @rewards_programmes.count == 0 %>
+
+    <p>This challenge does not have any rewards structure.</p>
+
+    <% else %>
+
     <table class="table" >
       <thead class="table-light">
         <tr>
@@ -41,5 +46,8 @@
       <% end %>
       </tbody>
     </table>
+
+    <% end %>
+
   </div>
 </div>
