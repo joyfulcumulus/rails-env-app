@@ -30,6 +30,7 @@ class Admin::ChallengesController < ApplicationController
   def edit
     @challenge = Challenge.find(params[:id])
     authorize @challenge
+    @rewards_programmes = RewardsProgramme.where(challenge: @challenge)
     render layout: "admin_layout"
   end
 
