@@ -16,5 +16,7 @@
     <p class="mb-1">Event ID: <%= @challenge_event.id %></p>
     <p class="mb-1">Collection Time: <%= @challenge_event.start_datetime.strftime("%e %b %Y %I:%M %p") %> - <%= @challenge_event.end_datetime.strftime("%I:%M %p") %></p>
     <p>Location: Islandwide</p>
+    <br>
+    <%= link_to "Back", :back, class: "btn-sec-admin-blue" %>
   </div>
 </div>

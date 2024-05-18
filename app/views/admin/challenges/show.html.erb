@@ -1,3 +1,46 @@
 <h1>Challenge Show Page (Admin)</h1>
-<p><%= @challenge.name %></p>
-<p><%= @challenge.description %></p>
+
+<div class="cover-image-container">
+  <% if @challenge.cover.attached? %>
+    <%= cl_image_tag @challenge.cover.key, class: "", alt: "challenge cover image"%>
+  <% else %>
+    <%= image_tag "challenge.PNG", class: "", alt: "default challenge cover image"%>
+  <% end %>
+</div>
+
+<div>
+  <div class="px-3 pt-3">
+    <h1 class="fs-2 mb-3"><%= @challenge.name %></h1>
+  </div>
+
+  <div class="p-3">
+    <h2 class="fs-5">What</h2>
+    <p class="mb-4"><%= @challenge.description %></p>
+
+    <h2 class="fs-5">When</h2>
+    <p class="mb-4">From <%= @challenge.start_date.strftime("%e %b %Y") %> to <%= @challenge.end_date.strftime("%e %b %Y") %></p>
+
+    <h2 class="fs-5">Who can participate</h2>
+    <p class="mb-4"><%= @challenge.participant_criteria %></p>
+
+    <h2 class="fs-5">Rewards structure</h2>
+    <p class="mb-1">Points are given based on the <%= @challenge.metric_name %> attained by the estate:</p>
+    <table class="table" >
+      <thead class="table-light">
+        <tr>
+          <th><%= @challenge.metric_name %></th>
+          <th>Points Given</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @rewards_programmes.each do |reward| %>
+        <tr>
+          <td><%= reward.target %><%= @challenge.metric_unit %></td>
+          <td><%= reward.points %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
