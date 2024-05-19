@@ -18,6 +18,7 @@ class ChallengesController < ApplicationController
     @latest_estate_metric = @challenge.name == "National Recycling Challenge" ? metric_fr_actions(params[:id]) : 0
     @chatroom = Chatroom.joins(:chatroom_members).where(chatroom_members: { user: current_user }).where(challenge: @challenge).first
     @title = "Challenge Details"
+    @back_path = challenges_path
     render layout: "challenge_layout"
   end
 
