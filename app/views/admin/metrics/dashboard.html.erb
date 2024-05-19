@@ -18,6 +18,12 @@
     <% end %>
   </div>
 
+  <div class="px-5 pt-3">
+    <span>Award points for latest challenge event to see updated metrics:</span>
+    <input data-action="click->metrics#awardPoints" class="btn-pri-small-turquoise" type="submit" value="Award Points">
+    <hr>
+  </div>
+
   <% if params[:challenge_id].present? == false || params[:estate_id].present? == false || params[:start_date].present? == false || params[:end_date].present? == false %>
 
     <div class="px-5 py-3">
@@ -58,8 +64,6 @@
           <canvas data-metrics-target="waste"></canvas>
         </div>
       </div>
-
-      <input data-action="click->metrics#awardPoints" class="btn-pri-small-turquoise" type="submit" value="Award Points">
     </div>
   <% end %>
 </div>
