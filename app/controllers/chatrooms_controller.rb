@@ -3,6 +3,7 @@ class ChatroomsController < ApplicationController
   def index
     @chatrooms = policy_scope(Chatroom)
     @title = "Collaboration Chats"
+    @back_path = challenges_path
     render layout: "internalpage_layout"
   end
 
