@@ -16,6 +16,7 @@ class ChallengesController < ApplicationController
     @rewards_programmes = RewardsProgramme.where(challenge: @challenge)
     @final_target_metric = @challenge.metric_objective == "maximize" ? @rewards_programmes.maximum(:target) : @rewards_programmes.minimum(:target)
     @latest_estate_metric = @challenge.name == "National Recycling Challenge" ? metric_fr_actions(params[:id]) : 0
+    @chatroom = Chatroom.joins(:chatroom_members).where(chatroom_members: { user: current_user }).where(challenge: @challenge).first
     @title = "Challenge Details"
     render layout: "challenge_layout"
   end
