@@ -1,7 +1,14 @@
 class Admin::RewardsProgrammesController < ApplicationController
 
   def create
-    raise
+    @reward = RewardsProgramme.new(params_reward)
+    authorize @reward
+    if @reward.save
+      head :ok
+      redirect_to edit_admin_challenge_path(@challenge)
+    else
+      # render , status: :unprocessable_entity
+    end
   end
 
   def update

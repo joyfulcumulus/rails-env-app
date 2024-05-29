@@ -35,6 +35,8 @@ class Admin::ChallengesController < ApplicationController
     else
       @rewards_programmes = RewardsProgramme.where(challenge: @challenge).order(target: :desc)
     end
+    @reward_new = RewardsProgramme.new
+    @reward_new.challenge = @challenge
     render layout: "admin_layout"
   end
 

@@ -1,4 +1,4 @@
-<div class="px-5 py-3">
+<div data-controller="add-reward" class="px-5 py-3">
   <h1 class="mb-4">Edit Challenge ID <%= @challenge.id %></h1>
   <%= simple_form_for [:admin, @challenge] do |f| %>
     <h2>Challenge Information</h2>
@@ -17,7 +17,10 @@
   <br>
   <hr>
   <br>
-  <h2 class="mb-4">Edit Rewards Programme</h2>
+  <div class="d-flex justify-content-between align-items-start mb-2" >
+    <h2>Edit Rewards Programme</h2>
+    <button data-action="click->add-reward#displayForm" class="btn-pri-admin-blue">+ New Reward</button>
+  </div>
   <% @rewards_programmes.each do |reward| %>
     <%= form_with model: reward, url: admin_rewards_programme_path(reward), method: :patch do |form| %>
       <%= form.text_field :target, class: "rewards-form-field" %>
@@ -27,7 +30,17 @@
       <%= form.submit "Save", class: "rewards-form-button me-1" %>
       <%= form.button "Delete", formmethod: :delete, data: {turbo_method: :delete,
       turbo_confirm: "Are you sure you want to delete?"}, class: "rewards-form-button"  %>
-    <% end%>
+    <% end %>
   <% end %>
+
+  <div data-add-reward-target="addRewardForm" class="d-none">
+    <%= form_with model: @reward_new, url: admin_rewards_programmes_path do |form| %>
+      <%= form.text_field :target, class: "rewards-form-field" %>
+      <span class="me-2"><%= @challenge.metric_unit %></span>
+      <%= form.number_field :points, class: "rewards-form-field" %>
+      <span class="me-3">points</span>
+      <%= form.submit "Add", class: "rewards-form-button me-1" %>
+    <% end %>
+  </div>
 
 </div>
