@@ -8,11 +8,10 @@ class Admin::RewardsProgrammesController < ApplicationController
 
     respond_to do |format|
       if @reward.save
-        format.json { render json: { message: "ok" }, status: :ok }
+        format.json
       else
         format.json { render json: { message: "not ok" }, status: :unprocessable_entity }
       end
-      # format.html { redirect_to edit_admin_challenge_path(@challenge) }
     end
   end
 

@@ -21,7 +21,10 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      if (data.inserted_reward) {
+        this.rewardsListTarget.insertAdjacentHTML("beforeend", data.inserted_reward);
+      }
+      this.addRewardFormTarget.reset();
     }
     )
   }
