@@ -2,12 +2,17 @@ class Admin::RewardsProgrammesController < ApplicationController
 
   def create
     @reward = RewardsProgramme.new(params_reward)
+    @challenge = Challenge.find(params[:challengeId])
+    @reward.challenge = @challenge
     authorize @reward
-    if @reward.save
-      head :ok
-      redirect_to edit_admin_challenge_path(@challenge)
-    else
-      # render , status: :unprocessable_entity
+
+    respond_to do |format|
+      if @reward.save
+        format.json { render json: { message: "ok" }, status: :ok }
+      else
+        format.json { render json: { message: "not ok" }, status: :unprocessable_entity }
+      end
+      # format.html { redirect_to edit_admin_challenge_path(@challenge) }
     end
   end
 

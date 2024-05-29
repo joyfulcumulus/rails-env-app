@@ -2,9 +2,27 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="add-reward"
 export default class extends Controller {
-  static targets = ["addRewardForm"];
+  static targets = ["addRewardSection", "addRewardForm", "rewardsList"];
 
   displayForm() {
-    this.addRewardFormTarget.classList.remove("d-none");
+    this.addRewardSectionTarget.classList.remove("d-none");
+  }
+
+  send(event) {
+    event.preventDefault();
+    const challengeId = event.target.dataset.challengeId;
+    const formData = new FormData(this.addRewardFormTarget);
+    formData.append('challengeId', challengeId);
+
+    fetch(this.addRewardFormTarget.action, {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    }
+    )
   }
 }
