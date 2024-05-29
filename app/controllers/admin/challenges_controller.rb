@@ -30,7 +30,11 @@ class Admin::ChallengesController < ApplicationController
   def edit
     @challenge = Challenge.find(params[:id])
     authorize @challenge
-    @rewards_programmes = RewardsProgramme.where(challenge: @challenge)
+    if @challenge.metric_objective == "maximize"
+      @rewards_programmes = RewardsProgramme.where(challenge: @challenge).order(target: :asc)
+    else
+      @rewards_programmes = RewardsProgramme.where(challenge: @challenge).order(target: :desc)
+    end
     render layout: "admin_layout"
   end
 

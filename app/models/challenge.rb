@@ -9,7 +9,7 @@ class Challenge < ApplicationRecord
   has_many :addresses, through: :locations
   has_many :points_awards, through: :challenge_events
 
-  accepts_nested_attributes_for :rewards_programmes
+  # accepts_nested_attributes_for :rewards_programmes
 
   OBJECTIVES = %w[maximize minimize]
   validates :metric_objective, inclusion: { in: OBJECTIVES }

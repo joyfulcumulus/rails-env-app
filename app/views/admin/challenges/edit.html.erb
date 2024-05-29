@@ -11,13 +11,19 @@
     <%= f.input :metric_objective, collection: ['maximize', 'minimize'], label: 'Metric Objective' %>
     <%= f.input :metric_unit, label: 'Metric Unit' %>
     <%= f.input :cover, label: 'Cover Image', as: :file %>
-    <br>
-    <h2>Rewards Programme</h2>
-    <%= f.simple_fields_for :rewards_programmes do |r| %>
-      <%= r.input :target, label: 'Target' %>
-      <%= r.input :points, label: 'Points' %>
-    <% end %>
     <%= f.submit "Save", class: 'btn-pri-admin-blue' %>
     <%= link_to "Back", :back, class: "btn-sec-admin-blue" %>
   <% end %>
+  <br>
+  <h2 class="mb-4">Edit Rewards Programme</h2>
+  <% @rewards_programmes.each do |reward| %>
+    <%= form_with model: reward, url: admin_rewards_programme_path(reward), method: :patch do |form| %>
+      <%= form.text_field :target, class: "rewards-form-field" %>
+      <span class="me-2"><%= @challenge.metric_unit %></span>
+      <%= form.number_field :points, class: "rewards-form-field" %>
+      <span class="me-4">points</span>
+      <%= form.submit "Save", class: "rewards-form-button" %>
+    <% end%>
+  <% end %>
+
 </div>

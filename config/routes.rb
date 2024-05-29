@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :challenges
     resources :challenge_events
+    resources :rewards_programmes
     get "home", to: "pages#home"
     get "dashboard", to: "metrics#dashboard"
     get "participants_per_event", to: "metrics#participants_per_event"
