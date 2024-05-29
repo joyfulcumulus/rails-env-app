@@ -13,7 +13,11 @@ class Admin::RewardsProgrammesController < ApplicationController
   end
 
   def destroy
-    raise
+    @reward = RewardsProgramme.find(params[:id])
+    authorize @reward
+    @challenge = @reward.challenge
+    @reward.destroy
+    redirect_to edit_admin_challenge_path(@challenge)
   end
 
   private
