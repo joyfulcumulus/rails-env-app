@@ -36,16 +36,6 @@
     <% end %>
   </div>
 
-  <div data-add-reward-target="addRewardSection" class="d-none">
-    <%= form_with model: @reward_new, url: admin_rewards_programmes_path,
-      data: { add_reward_target: "addRewardForm", action: "submit->add-reward#send", challenge_id: @challenge.id} do |form|
-    %>
-      <%= form.text_field :target, class: "rewards-form-field" %>
-      <span class="me-2"><%= @challenge.metric_unit %></span>
-      <%= form.number_field :points, class: "rewards-form-field" %>
-      <span class="me-3">points</span>
-      <%= form.submit "Add", class: "rewards-form-button me-1" %>
-    <% end %>
-  </div>
+  <%= render "addreward_form", reward_new: @reward_new, challenge: @challenge %>
 
 </div>
