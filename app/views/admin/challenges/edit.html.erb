@@ -24,15 +24,7 @@
 
   <div data-add-reward-target="rewardsList">
     <% @rewards_programmes.each do |reward| %>
-      <%= form_with model: reward, url: admin_rewards_programme_path(reward), method: :patch do |form| %>
-        <%= form.text_field :target, class: "rewards-form-field" %>
-        <span class="me-2"><%= @challenge.metric_unit %></span>
-        <%= form.number_field :points, class: "rewards-form-field" %>
-        <span class="me-3">points</span>
-        <%= form.submit "Save", class: "rewards-form-button me-1" %>
-        <%= form.button "Delete", formmethod: :delete, data: {turbo_method: :delete,
-        turbo_confirm: "Are you sure you want to delete?"}, class: "rewards-form-button"  %>
-      <% end %>
+      <%= render "editreward_form", reward: reward, challenge: @challenge %>
     <% end %>
   </div>
 
