@@ -18,6 +18,12 @@ export default class extends Controller {
 
   resetForm(event) {
     event.target.reset()
+
+    // remove error message if there is one previously
+    const errorField = document.querySelector(".is-invalid");
+    if (errorField !== null) {
+      errorField.classList.remove("is-invalid");
+    }
   }
 
   disconnect() {
