@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="challenges-footer"
 export default class extends Controller {
-  static targets = ["nonParticipantFooter", "participantFooter", "joinpopup", "sharepopup"]
+  static targets = ["nonParticipantFooter", "participantFooter", "joinpopup", "sharepopup", "chatLink"]
 
   joinChallenge(event) {
     event.preventDefault();
@@ -16,7 +16,10 @@ export default class extends Controller {
       }
     })
     .then(response => response.json())
-    .then(() => {
+    .then(({chatroomId}) => {
+      // refresh link to chatroom
+      this.chatLinkTarget.setAttribute("href", `/chatrooms/${chatroomId}`);
+      // display updated footers and popups
       this.nonParticipantFooterTarget.classList.add("d-none");
       this.participantFooterTarget.classList.remove("d-none");
       this.joinpopupTarget.classList.add("active");

@@ -38,7 +38,8 @@ class ChallengesController < ApplicationController
     @chatroom_member.save!
 
     respond_to do |format|
-      format.json { render json: { message: "ok" }, status: :ok }
+      # return chatroom ID for newly joined member to access
+      format.json { render json: { chatroomId: @chatroom.id }, status: :ok }
     end
   end
 
