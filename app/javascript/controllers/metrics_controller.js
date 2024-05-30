@@ -5,7 +5,7 @@ Chart.register(...registerables);
 
 // Connects to data-controller="metrics"
 export default class extends Controller {
-  static targets = ["participants", "recyclingRate", "volume", "waste"];
+  static targets = ["participants", "recyclingRate", "volume", "waste", "awardPointsSpinner", "awardPointsText"];
 
   connect() {
     // fetch params from URL (if any)
@@ -165,6 +165,9 @@ export default class extends Controller {
 
   awardPoints(event) {
     event.preventDefault();
+    this.awardPointsSpinnerTarget.classList.remove("d-none");
+    this.awardPointsTextTarget.innerText = "Awarding...";
+
     const url = `/admin/award_points`;
     fetch(url, {
       method: "POST",
@@ -175,7 +178,8 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      this.awardPointsSpinnerTarget.classList.add("d-none");
+      this.awardPointsTextTarget.innerText = "Award Points";
     })
   }
 

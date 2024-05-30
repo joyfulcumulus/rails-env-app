@@ -20,7 +20,10 @@
 
   <div class="px-5 pt-3">
     <span>Award points for latest challenge event before reviewing metrics:</span>
-    <input data-action="click->metrics#awardPoints" class="btn-pri-small-turquoise" type="submit" value="Award Points">
+    <button class="btn-pri-small-turquoise" type="button" data-action="click->metrics#awardPoints">
+      <span data-metrics-target="awardPointsSpinner" class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span>
+      <span data-metrics-target="awardPointsText" role="status">Award Points</span>
+    </button>
     <hr>
   </div>
 
@@ -66,4 +69,5 @@
       </div>
     </div>
   <% end %>
+
 </div>
