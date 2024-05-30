@@ -10,6 +10,7 @@ class ChatroomsController < ApplicationController
   def show
     @chatroom = Chatroom.find(params[:id])
     authorize @chatroom
+    @messages = @chatroom.messages.includes([:user])
     @message = Message.new
     render layout: "chat_layout"
   end
