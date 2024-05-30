@@ -441,10 +441,10 @@ puts "chatrooms created..."
     challenge_event: recycling_event9
   )
 
-  # Dont use cloudinary first, generate user without avatar
-  # file = URI.open("https://thispersondoesnotexist.com/")
-  # user.avatar.attach(io: file, filename: "avatar#{num}.jpeg", content_type: "image/jpeg")
-  # user.save
+  file = URI.open("https://thispersondoesnotexist.com/")
+  filename = "avatar#{num}.jpeg"
+  user.avatar.attach(io: file, filename: filename, content_type: "image/jpeg")
+  user.save
 
 end
 
@@ -571,10 +571,11 @@ end
     user:,
     challenge_event: recycling_event9
   )
-  # Dont use cloudinary first, generate user without avatar
-  # file = URI.open("https://thispersondoesnotexist.com/")
-  # user.avatar.attach(io: file, filename: "avatar#{num}.jpeg", content_type: "image/jpeg")
-  # user.save
+
+  file = URI.open("https://thispersondoesnotexist.com/")
+  filename = "avatar#{num}.jpeg"
+  user.avatar.attach(io: file, filename: filename, content_type: "image/jpeg")
+  user.save
 
 end
 
