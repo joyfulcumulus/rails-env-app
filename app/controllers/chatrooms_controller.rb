@@ -1,7 +1,7 @@
 class ChatroomsController < ApplicationController
 
   def index
-    @chatrooms = policy_scope(Chatroom)
+    @chatrooms = policy_scope(Chatroom).includes({challenge: { cover_attachment: :blob } }, :estate)
     @title = "Collaboration Chats"
     @back_path = challenges_path
     render layout: "internalpage_layout"
