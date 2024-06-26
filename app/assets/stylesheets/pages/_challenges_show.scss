@@ -1,4 +1,8 @@
 .cover-image-container {
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+
   img {
     max-width: 100%;
   }
