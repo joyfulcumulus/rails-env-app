@@ -13,6 +13,7 @@ class MessagesController < ApplicationController
       )
       head :ok
     else
+      @messages = @chatroom.messages.includes([:user])
       render "chatrooms/show", layout: "chat_layout", status: :unprocessable_entity
     end
   end

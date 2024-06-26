@@ -248,57 +248,89 @@ puts "locations created..."
 # create challenge events
 
 recycling_event1 = ChallengeEvent.create!(
-  start_datetime: Time.new(2024, 3, 2, 9, 0, 0),
-  end_datetime: Time.new(2024, 3, 2, 12, 0, 0),
+  start_datetime: Time.new(2024, 5, 4, 9, 0, 0),
+  end_datetime: Time.new(2024, 5, 4, 12, 0, 0),
   challenge: recycling_challenge
 )
 
 recycling_event2 = ChallengeEvent.create!(
-  start_datetime: Time.new(2024, 3, 9, 9, 0, 0),
-  end_datetime: Time.new(2024, 3, 9, 12, 0, 0),
+  start_datetime: Time.new(2024, 5, 11, 9, 0, 0),
+  end_datetime: Time.new(2024, 5, 11, 12, 0, 0),
   challenge: recycling_challenge
 )
 
 recycling_event3 = ChallengeEvent.create!(
-  start_datetime: Time.new(2024, 3, 16, 9, 0, 0),
-  end_datetime: Time.new(2024, 3, 16, 12, 0, 0),
+  start_datetime: Time.new(2024, 5, 18, 9, 0, 0),
+  end_datetime: Time.new(2024, 5, 18, 12, 0, 0),
   challenge: recycling_challenge
 )
 
 recycling_event4 = ChallengeEvent.create!(
-  start_datetime: Time.new(2024, 3, 23, 9, 0, 0),
-  end_datetime: Time.new(2024, 3, 23, 12, 0, 0),
+  start_datetime: Time.new(2024, 5, 25, 9, 0, 0),
+  end_datetime: Time.new(2024, 5, 25, 12, 0, 0),
   challenge: recycling_challenge
 )
 
 recycling_event5 = ChallengeEvent.create!(
-  start_datetime: Time.new(2024, 3, 30, 9, 0, 0),
-  end_datetime: Time.new(2024, 3, 30, 12, 0, 0),
+  start_datetime: Time.new(2024, 6, 1, 9, 0, 0),
+  end_datetime: Time.new(2024, 6, 1, 12, 0, 0),
   challenge: recycling_challenge
 )
 
 recycling_event6 = ChallengeEvent.create!(
-  start_datetime: Time.new(2024, 4, 6, 9, 0, 0),
-  end_datetime: Time.new(2024, 4, 6, 12, 0, 0),
+  start_datetime: Time.new(2024, 6, 8, 9, 0, 0),
+  end_datetime: Time.new(2024, 6, 8, 12, 0, 0),
   challenge: recycling_challenge
 )
 
 recycling_event7 = ChallengeEvent.create!(
-  start_datetime: Time.new(2024, 4, 13, 9, 0, 0),
-  end_datetime: Time.new(2024, 4, 13, 12, 0, 0),
+  start_datetime: Time.new(2024, 6, 15, 9, 0, 0),
+  end_datetime: Time.new(2024, 6, 15, 12, 0, 0),
   challenge: recycling_challenge
 )
 
 recycling_event8 = ChallengeEvent.create!(
-  start_datetime: Time.new(2024, 4, 20, 9, 0, 0),
-  end_datetime: Time.new(2024, 4, 20, 12, 0, 0),
+  start_datetime: Time.new(2024, 6, 22, 9, 0, 0),
+  end_datetime: Time.new(2024, 6, 22, 12, 0, 0),
   challenge: recycling_challenge
 )
 
 recycling_event9 = ChallengeEvent.create!(
-  start_datetime: Time.new(2024, 4, 27, 9, 0, 0),
-  end_datetime: Time.new(2024, 4, 27, 12, 0, 0),
+  start_datetime: Time.new(2024, 6, 29, 9, 0, 0),
+  end_datetime: Time.new(2024, 6, 29, 12, 0, 0),
   challenge: recycling_challenge
+)
+
+# create waste challenge events
+
+waste_event1 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 6, 1, 9, 0, 0),
+  end_datetime: Time.new(2024, 6, 1, 12, 0, 0),
+  challenge: waste_challenge
+)
+
+waste_event2 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 6, 8, 9, 0, 0),
+  end_datetime: Time.new(2024, 6, 8, 12, 0, 0),
+  challenge: waste_challenge
+)
+
+waste_event3 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 6, 15, 9, 0, 0),
+  end_datetime: Time.new(2024, 6, 15, 12, 0, 0),
+  challenge: waste_challenge
+)
+
+waste_event4 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 6, 22, 9, 0, 0),
+  end_datetime: Time.new(2024, 6, 22, 12, 0, 0),
+  challenge: waste_challenge
+)
+
+waste_event5 = ChallengeEvent.create!(
+  start_datetime: Time.new(2024, 6, 29, 9, 0, 0),
+  end_datetime: Time.new(2024, 6, 29, 12, 0, 0),
+  challenge: waste_challenge
 )
 
 puts "challenge events created..."
@@ -441,10 +473,10 @@ puts "chatrooms created..."
     challenge_event: recycling_event9
   )
 
-  file = URI.open("https://thispersondoesnotexist.com/")
-  filename = "avatar#{num}.jpeg"
-  user.avatar.attach(io: file, filename: filename, content_type: "image/jpeg")
-  user.save
+  # file = URI.open("https://thispersondoesnotexist.com/")
+  # # filename = "avatar#{num}.jpeg"
+  # user.avatar.attach(io: file, filename: filename, content_type: "image/jpeg")
+  # user.save
 
 end
 
@@ -572,13 +604,44 @@ end
     challenge_event: recycling_event9
   )
 
-  file = URI.open("https://thispersondoesnotexist.com/")
-  filename = "avatar#{num}.jpeg"
-  user.avatar.attach(io: file, filename: filename, content_type: "image/jpeg")
-  user.save
+  # file = URI.open("https://thispersondoesnotexist.com/")
+  # # filename = "avatar#{num}.jpeg"
+  # user.avatar.attach(io: file, filename: filename, content_type: "image/jpeg")
+  # user.save
 
 end
 
-puts "users created... all join recycling challenge..."
+# create 2 residents that did not join any challenge
+
+(16..17).to_a.each do |num|
+  user_address = Address.create!(
+    street: "Hougang Ave #{rand(1..10)}",
+    zipcode: %w[539830 538785 530836 534037 530130].sample,
+    unit_number: "0#{rand(1..9)}-4432",
+    estate: estate2
+  )
+
+  user = User.create!(
+    email: "user#{num}@email.com",
+    password: "password",
+    first_name: %w[Meiling Wenjuan Catherine Zixiang Alvin Kangle].sample,
+    last_name: %w[Lee Tan Wijeysingha Morrison Ng Heng].sample,
+    admin: false, # no admin here
+    address: user_address
+  )
+
+  user_total_points = TotalPoint.create!(
+    total_points: 60, # Includes points from previous challenges
+    user:
+  )
+
+  # file = URI.open("https://thispersondoesnotexist.com/")
+  # # filename = "avatar#{num}.jpeg"
+  # user.avatar.attach(io: file, filename: filename, content_type: "image/jpeg")
+  # user.save
+
+end
+
+puts "users created..."
 
 puts "seeding entries done!"
