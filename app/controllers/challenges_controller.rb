@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
   # skip_before_action :authenticate_user!, only: :home
 
   def index
-    @challenges = policy_scope(Challenge).includes([cover_attachment: :blob])
+    @challenges = policy_scope(Challenge).includes([cover_attachment: :blob]).order(start_date: :asc)
     @challenges_participated = current_user.challenges
     @total_points = TotalPoint.find_by(user: current_user)
     @title = "Challenges"
